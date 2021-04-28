@@ -1,0 +1,1 @@
+Data Visualization to analyse expenditures for Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS) in parliamentary constituencies of Odisha for the financial year 2019-20.
