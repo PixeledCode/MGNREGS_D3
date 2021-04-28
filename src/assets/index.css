@@ -9,7 +9,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-#root, .App, html, body {
+#root,
+.App,
+html,
+body {
   height: 100%;
 }
 
@@ -17,7 +20,8 @@ code {
   height: 100%;
 }
 
-.svgDistrict, .svgDistrictName {
+.svgDistrict,
+.svgDistrictName {
   cursor: pointer;
 }
 
@@ -31,5 +35,19 @@ code {
 #map__text ul {
   list-style: none;
   padding-left: 1rem;
+}
+
+#map__text ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 330px;
+}
+
+#map__text ul li span {
+  font-weight: 600;
 }
 /*# sourceMappingURL=index.css.map */

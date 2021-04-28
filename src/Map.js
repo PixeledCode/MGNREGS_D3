@@ -7,6 +7,7 @@ class Map extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			constituency: '',
 			opening_bal: 0,
 			total_funds: 0,
 			expenditure_wages: 0,
@@ -14,7 +15,7 @@ class Map extends Component {
 			total_expenditure: 0,
 			unspent_bal: 0,
 			payment_due: 0,
-			initial: true
+			initial: true,
 		}
 	}
 
@@ -46,13 +47,14 @@ class Map extends Component {
 		}
 
 		const clickHandler = (d, i) => {
-			console.log(data['Aska']['opening_bal']);
 			this.setState({
 				initial: false,
+				constituency: i.properties.pc_name,
 				opening_bal: data[i.properties.pc_name]['opening_bal'],
 				total_funds: data[i.properties.pc_name]['total_funds'],
 				expenditure_wages: data[i.properties.pc_name]['expenditure_wages'],
-				expenditure_materials: data[i.properties.pc_name]['expenditure_materials'],
+				expenditure_materials:
+					data[i.properties.pc_name]['expenditure_materials'],
 				total_expenditure: data[i.properties.pc_name]['total_expenditure'],
 				unspent_bal: data[i.properties.pc_name]['unspent_bal'],
 				payment_due: data[i.properties.pc_name]['payment_due'],
@@ -132,22 +134,25 @@ class Map extends Component {
 		return (
 			<>
 				<div id={'map__text'}>
-					{ this.state.initial ?
+					{this.state.initial ? (
 						<p>Click on any Constituency to view data</p>
-
-						:
+					) : (
 						<ul>
-						<li>Opening Balance: {this.state.opening_bal}</li>
-						<li>Total Funds Available: {this.state.total_funds}</li>
-						<li>Total Expenditure on Wages: {this.state.expenditure_wages}</li>
-						<li>
-							Total Expenditure on Materials: {this.state.expenditure_materials}
-						</li>
-						<li>Grand Total Expenditure: {this.state.total_expenditure}</li>
-						<li>Total Unspent Balance: {this.state.unspent_bal}</li>
-						<li>Total Payment Due: {this.state.payment_due}</li>
-					</ul>
-					}
+							<li>Parliamentary Constituency: <span>{this.state.constituency}</span></li>
+							<li>Opening Balance: <span>{this.state.opening_bal}</span></li>
+							<li>Total Funds Available: <span>{this.state.total_funds}</span></li>
+							<li>
+								Total Expenditure on Wages: <span>{this.state.expenditure_wages}</span>
+							</li>
+							<li>
+								Total Expenditure on Materials:{' '}
+								<span>{this.state.expenditure_materials}</span>
+							</li>
+							<li>Grand Total Expenditure: <span>{this.state.total_expenditure}</span></li>
+							<li>Total Unspent Balance: <span>{this.state.unspent_bal}</span></li>
+							<li>Total Payment Due: <span>{this.state.payment_due}</span></li>
+						</ul>
+					)}
 				</div>
 				<div id={'map__container'}></div>
 			</>
