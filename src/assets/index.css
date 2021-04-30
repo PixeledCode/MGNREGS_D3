@@ -20,26 +20,6 @@ body {
   position: relative;
 }
 
-.section h1, .section h3,
-.section p {
-  padding: 0 2rem;
-}
-
-.section h1 {
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-
-.section p {
-  font-size: .8rem;
-}
-
-.section h3 {
-  height: 23px;
-  margin-bottom: -30px;
-  font-weight: 500;
-}
-
 #map__container {
   height: calc(100% - 100px);
 }
@@ -80,6 +60,26 @@ div#container {
   -ms-grid-rows: (max-content)[2] 1fr;
       grid-template-rows: repeat(2, -webkit-max-content) 1fr;
       grid-template-rows: repeat(2, max-content) 1fr;
+}
+
+div#container h1, div#container h3,
+div#container p {
+  padding: 0 2rem;
+}
+
+div#container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+div#container p {
+  font-size: .8rem;
+}
+
+div#container h3 {
+  height: 23px;
+  margin-bottom: -30px;
+  font-weight: 500;
 }
 
 .main-g {
