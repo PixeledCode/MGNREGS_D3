@@ -1,15 +1,36 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
 
-class Chart extends Component {
+class Charts extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			constituency: '',
+			opening_bal: 0,
+			total_funds: 0,
+			expenditure_wages: 0,
+			expenditure_materials: 0,
+			total_expenditure: 0,
+			unspent_bal: 0,
+			payment_due: 0,
+		}
+	}
 	componentDidMount() {
 		this.drawChart()
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.constituency !== this.props.constituency) {
-			document.querySelector('.label').remove()
-			document.querySelector('.district').remove()
+			this.setState({
+				constituency: this.props.constituency,
+				opening_bal: this.props.opening_bal,
+				total_funds: this.props.total_funds,
+				expenditure_wages: this.props.expenditure_wages,
+				expenditure_materials: this.props.expenditure_materials,
+				total_expenditure: this.props.total_expenditure,
+				unspent_bal: this.props.unspent_bal,
+				payment_due: this.props.payment_due,
+			})
 			document.querySelector('.label').remove()
 			document.querySelector('.main-g').remove()
 			this.drawChart()
@@ -17,41 +38,35 @@ class Chart extends Component {
 	}
 
 	drawChart() {
+		console.log(this.state.opening_bal);
 		const data = [
 			{
 				language: 'Opening Balance',
-				value: this.props.opening_bal,
-				color: '#00a2ee',
+				value: this.state.opening_bal,
 			},
 			{
 				language: 'Funds Available',
-				value: this.props.total_funds,
-				color: '#fbcb39',
+				value: this.state.total_funds,
 			},
 			{
 				language: 'Expenditure-Wages',
-				value: this.props.expenditure_wages,
-				color: '#007bc8',
+				value: this.state.expenditure_wages,
 			},
 			{
 				language: 'Expenditure-Material',
-				value: this.props.expenditure_materials,
-				color: '#007bc8',
+				value: this.state.expenditure_materials,
 			},
 			{
 				language: 'Grand Expenditure',
-				value: this.props.total_expenditure,
-				color: '#65cedb',
+				value: this.state.total_expenditure,
 			},
 			{
 				language: 'Unspent Balance',
-				value: this.props.unspent_bal,
-				color: '#ff6e52',
+				value: this.state.unspent_bal,
 			},
 			{
 				language: 'Payment Due',
-				value: this.props.payment_due,
-				color: '#f9de3f',
+				value: this.state.payment_due,
 			},
 		]
 
@@ -62,7 +77,6 @@ class Chart extends Component {
 		const height = chartDOM.clientHeight - margin * 3
 
 		const chart = svg.append('g').attr('class', 'main-g')
-		// .attr('transform', `translate(${margin}, ${margin/3})`)
 
 		const xScale = d3
 			.scaleBand()
@@ -108,36 +122,28 @@ class Chart extends Component {
 		svg
 			.append('text')
 			.attr('class', 'label budget')
-			.attr('x', -(height / 2) - margin * 1.4)
-			.attr('y', margin / 2.4)
+			.attr('x', -(height / 2) - margin / 2)
+			.attr('y', (width / margin) * 3)
 			.attr('transform', 'rotate(-90)')
 			.attr('text-anchor', 'middle')
 			.text('Budget (10 Crore INR)')
-
-		svg
-			.append('text')
-			.attr('class', 'label')
-			.attr('x', width - margin * 3)
-			.attr('y', height + margin * 2.8)
-			.attr('text-anchor', 'middle')
-			.text('Category')
-      
-		barGroups
-			.append('text')
-			.attr('class', 'district')
-			.attr('x', width - margin  * 3)
-			.attr('y', height - margin * 3)
-			.attr('text-anchor', 'middle')
-			.text(this.props.constituency)
 	}
 
 	render() {
+		
 		return (
 			<div id="container">
-				<svg id={'chart'} />
+				<h1>MGNREGS (2019-20)</h1>
+				<p>
+					Data Visualization to analyse expenditures for Mahatma Gandhi National
+					Rural Employment Guarantee Scheme (MGNREGS) in parliamentary
+					constituencies of Odisha for the financial year 2019-20.
+				</p>
+				<h3>{this.state.constituency}</h3>
+				<svg id={'chart'} viewBox="0 0 400 500" />
 			</div>
 		)
 	}
 }
 
-export default Chart
+export default Charts

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-import odisha from './odihsa'
-import data from './data.json'
-import Chart from './chart'
+import odisha from 'assets/odihsa'
+import data from 'assets/data.json'
+// import Chart from './chart'
+import Charts from 'components/charts'
+
 class Map extends Component {
 	constructor(props) {
 		super(props)
@@ -26,16 +28,10 @@ class Map extends Component {
 	drawMap() {
 		const WIDTH = window.innerWidth
 		const HEIGHT = window.innerHeight
-		const ZOOM_THRESHOLD = [0.5, 2]
-		const OVERLAY_MULTIPLIER = 10
-		const OVERLAY_OFFSET = OVERLAY_MULTIPLIER / 2 - 0.5
 		const HOVER_COLOR = '#d36f80'
-
+		let fitSVG = WIDTH / 3
+		if (WIDTH < 780) fitSVG = 0
 		// --------------- Event handler ---------------
-
-		function zoomHandler(event) {
-			g.attr('transform', event.transform)
-		}
 
 		function mouseOverHandler(d, i) {
 			d3.select(this).attr('fill', HOVER_COLOR)
@@ -61,42 +57,28 @@ class Map extends Component {
 		}
 
 		// Prepare SVG container for placing the map,
-		// and overlay a transparent rectangle for better pan and zoom.
 		const svg = d3
 			.select('#map__container')
+			.classed('svg-container', true)
 			.append('svg')
-			.attr('width', '100%')
-			.attr('height', '100%')
+			.attr('preserveAspectRatio', 'xMinYMin meet')
+			.attr('viewBox', `0 0 ${WIDTH} ${HEIGHT - 100}`)
+			.classed('svg-content-responsive', true)
 
-		const zoom = d3.zoom().scaleExtent(ZOOM_THRESHOLD).on('zoom', zoomHandler)
-
-		const g = svg
-			.call(zoom)
-			.append('g')
-
-			g.append('rect')
-			.attr('width', WIDTH * OVERLAY_MULTIPLIER)
-			.attr('height', HEIGHT * OVERLAY_MULTIPLIER)
-			.attr(
-				'transform',
-				`translate(-${WIDTH * OVERLAY_OFFSET},-${HEIGHT * OVERLAY_OFFSET})`
-			)
-			.style('fill', 'none')
-			.style('pointer-events', 'all')
-
-		// Project GeoJSON from 3D to 2D plane, and set
-		// projection config.
-		const projection = d3
-			.geoMercator()
-			.center([84.400309, 20.761804])
-			.scale(8000)
-			.translate([WIDTH / 3, HEIGHT / 3])
+		const projection = d3.geoMercator().fitExtent(
+			[
+				[fitSVG, 0],
+				[WIDTH, HEIGHT],
+			],
+			odisha
+		)
 
 		// Prepare SVG path and color, import the
 		// effect from above projection.
 		const path = d3.geoPath().projection(projection)
 		const color = '#9ecae1'
 
+		const g = svg.attr('class', 'svgMap')
 		function renderMap(root) {
 			// Draw districts and register event listeners
 			g.append('g')
@@ -133,7 +115,7 @@ class Map extends Component {
 	render() {
 		return (
 			<>
-				<Chart
+				<Charts
 					constituency={this.state.constituency}
 					opening_bal={this.state.opening_bal}
 					total_funds={this.state.total_funds}
