@@ -42,6 +42,10 @@ class Map extends Component {
 		}
 
 		const clickHandler = (d, i) => {
+			if(document.querySelector('.selectedMap'))
+				document.querySelector('.selectedMap').classList.remove('selectedMap')
+			
+			document.getElementById(i.properties.pc_name).classList.add('selectedMap')
 			this.setState({
 				initial: false,
 				constituency: i.properties.pc_name,
@@ -87,6 +91,7 @@ class Map extends Component {
 				.enter()
 				.append('path')
 				.attr('class', 'svgDistrict')
+				.attr('id', ((d) => d.properties.pc_name))
 				.attr('d', path)
 				.attr('fill', color)
 				.attr('stroke', '#FFF')

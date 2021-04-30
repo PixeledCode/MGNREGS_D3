@@ -15,11 +15,23 @@ code {
 html,
 body {
   height: 100%;
-  // overflow: hidden;
 }
 
 .App {
   position: relative;
+}
+
+.navbar {
+  background-color: #145084;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    color: white;
+    padding: .5rem 3rem;
+  }
 }
 
 #map__container {
@@ -28,6 +40,14 @@ body {
   .svgDistrict,
   .svgDistrictName {
     cursor: pointer;
+  }
+
+  .selectedMap {
+    fill: #d36f80;
+  }
+
+  @media screen and (max-width: 780px) {
+    margin-top: -5rem;
   }
 }
 
@@ -46,24 +66,28 @@ body {
   left: 0;
 }
 
-.navbar {
-  background-color: #145084;
-  height: 50px;
-}
-
 div#container {
   top: 10vw;
   left: 2vw;
   position: absolute;
   width: 400px;
-  min-width: 400px;
   height: 500px;
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr;
 
-  h1,h3,
+  @media screen and (max-width: 780px) {
+    position: relative;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 350px;
+  }
+
+  h1,
+  h3,
   p {
     padding: 0 2rem;
+    z-index: 100;
   }
 
   h1 {
@@ -81,6 +105,7 @@ div#container {
     font-weight: 500;
   }
 
+
 }
 
 // bar chart
@@ -89,7 +114,7 @@ div#container {
 }
 
 .bar {
-  fill: #80cbc4;
+  fill: #145084;
 }
 
 text {
@@ -126,46 +151,4 @@ line {
 .alt-g text {
   transform: rotate(-45deg) translate(-50px, 0px);
   z-index: 20;
-}
-
-text {
-
-  &.district {
-    font-size: 1.5rem;
-    font-weight: 500;
-    width: 100%;
-  }
-
-  &.divergence {
-    font-size: 12px;
-    fill: #2F4A6D;
-  }
-
-  &.value {
-    font-size: 12px;
-  }
-
-  &.title {
-    font-size: 22px;
-    font-weight: 600;
-  }
-
-  &.label {
-    font-size: 12px;
-    font-weight: 400;
-  }
-
-  &.source {
-    font-size: 10px;
-  }
-
-}
-
-
-@media screen and (max-width: 780px) {
-
-  div#container {
-    position: relative;
-  }
-
 }
