@@ -27,8 +27,8 @@ class Map extends Component {
 		const WIDTH = window.innerWidth
 		const HEIGHT = window.innerHeight
 		const ZOOM_THRESHOLD = [0.5, 2]
-		// const OVERLAY_MULTIPLIER = 10
-		// const OVERLAY_OFFSET = OVERLAY_MULTIPLIER / 2 - 0.5
+		const OVERLAY_MULTIPLIER = 10
+		const OVERLAY_OFFSET = OVERLAY_MULTIPLIER / 2 - 0.5
 		const HOVER_COLOR = '#d36f80'
 
 		// --------------- Event handler ---------------
@@ -73,6 +73,16 @@ class Map extends Component {
 		const g = svg
 			.call(zoom)
 			.append('g')
+
+			g.append('rect')
+			.attr('width', WIDTH * OVERLAY_MULTIPLIER)
+			.attr('height', HEIGHT * OVERLAY_MULTIPLIER)
+			.attr(
+				'transform',
+				`translate(-${WIDTH * OVERLAY_OFFSET},-${HEIGHT * OVERLAY_OFFSET})`
+			)
+			.style('fill', 'none')
+			.style('pointer-events', 'all')
 
 		// Project GeoJSON from 3D to 2D plane, and set
 		// projection config.
@@ -133,42 +143,6 @@ class Map extends Component {
 					unspent_bal={this.state.unspent_bal}
 					payment_due={this.state.payment_due}
 				/>
-				{/* <div id={'map__text'}>
-					{this.state.initial ? (
-						<p>Click on any Constituency to view data</p>
-					) : (
-						<ul>
-							<li>
-								Parliamentary Constituency:{' '}
-								<span>{this.state.constituency}</span>
-							</li>
-							<li>
-								Opening Balance: <span>{this.state.opening_bal}</span>
-							</li>
-							<li>
-								Total Funds Available: <span>{this.state.total_funds}</span>
-							</li>
-							<li>
-								Total Expenditure on Wages:{' '}
-								<span>{this.state.expenditure_wages}</span>
-							</li>
-							<li>
-								Total Expenditure on Materials:{' '}
-								<span>{this.state.expenditure_materials}</span>
-							</li>
-							<li>
-								Grand Total Expenditure:{' '}
-								<span>{this.state.total_expenditure}</span>
-							</li>
-							<li>
-								Total Unspent Balance: <span>{this.state.unspent_bal}</span>
-							</li>
-							<li>
-								Total Payment Due: <span>{this.state.payment_due}</span>
-							</li>
-						</ul>
-					)}
-				</div> */}
 				<div id={'map__container'}></div>
 			</>
 		)
