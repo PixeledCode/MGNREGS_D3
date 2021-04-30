@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
-// import data from './data.json'
 
 class Chart extends Component {
 	componentDidMount() {
@@ -123,11 +122,11 @@ class Chart extends Component {
 			.attr('text-anchor', 'middle')
 			.text('Category')
       
-		svg
+		barGroups
 			.append('text')
 			.attr('class', 'district')
-			.attr('x', width - margin)
-			.attr('y', height - margin * 1.2)
+			.attr('x', width - margin  * 3)
+			.attr('y', height - margin * 3)
 			.attr('text-anchor', 'middle')
 			.text(this.props.constituency)
 	}

@@ -27,8 +27,8 @@ class Map extends Component {
 		const WIDTH = window.innerWidth
 		const HEIGHT = window.innerHeight
 		const ZOOM_THRESHOLD = [0.5, 2]
-		const OVERLAY_MULTIPLIER = 10
-		const OVERLAY_OFFSET = OVERLAY_MULTIPLIER / 2 - 0.5
+		// const OVERLAY_MULTIPLIER = 10
+		// const OVERLAY_OFFSET = OVERLAY_MULTIPLIER / 2 - 0.5
 		const HOVER_COLOR = '#d36f80'
 
 		// --------------- Event handler ---------------
@@ -70,18 +70,9 @@ class Map extends Component {
 
 		const zoom = d3.zoom().scaleExtent(ZOOM_THRESHOLD).on('zoom', zoomHandler)
 
-		const g = svg.call(zoom).append('g')
-
-		// transparent rectangle
-		g.append('rect')
-			.attr('width', WIDTH * OVERLAY_MULTIPLIER)
-			.attr('height', HEIGHT * OVERLAY_MULTIPLIER)
-			.attr(
-				'transform',
-				`translate(-${WIDTH * OVERLAY_OFFSET},-${HEIGHT * OVERLAY_OFFSET})`
-			)
-			.style('fill', 'none')
-			.style('pointer-events', 'all')
+		const g = svg
+			.call(zoom)
+			.append('g')
 
 		// Project GeoJSON from 3D to 2D plane, and set
 		// projection config.
@@ -89,7 +80,7 @@ class Map extends Component {
 			.geoMercator()
 			.center([84.400309, 20.761804])
 			.scale(8000)
-			.translate([WIDTH / 2, HEIGHT / 4])
+			.translate([WIDTH / 3, HEIGHT / 3])
 
 		// Prepare SVG path and color, import the
 		// effect from above projection.

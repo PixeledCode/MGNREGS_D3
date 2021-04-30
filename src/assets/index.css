@@ -21,15 +21,16 @@ body {
   height: 100%;
 }
 
-.svgDistrict,
-.svgDistrictName {
+#map__container .svgDistrict,
+#map__container .svgDistrictName {
   cursor: pointer;
 }
 
 div#container {
-  width: 700px;
+  width: 100%;
   height: 400px;
   margin: auto;
+  margin-left: 0;
 }
 
 div#container svg {
@@ -44,12 +45,6 @@ div#container svg {
 
 .bar {
   fill: #80cbc4;
-}
-
-text.district {
-  font-size: 1.5rem;
-  font-weight: 500;
-  width: 100%;
 }
 
 text {
@@ -86,6 +81,12 @@ line#limit {
   z-index: 20;
 }
 
+text.district {
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: 100%;
+}
+
 text.divergence {
   font-size: 12px;
   fill: #2F4A6D;
@@ -107,6 +108,29 @@ text.label {
 
 text.source {
   font-size: 10px;
+}
+
+@media screen and (min-width: 800px) {
+  .App {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 2.5fr;
+        grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  .App {
+    -ms-grid-columns: 1fr 2fr;
+        grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 998px) {
+  .App {
+    -ms-grid-columns: 1fr 1.5fr;
+        grid-template-columns: 1fr 1.5fr;
+  }
 }
 
 @media screen and (max-width: 680px) {
