@@ -54,6 +54,7 @@ div#container {
   left: 2vw;
   position: absolute;
   width: 400px;
+  min-width: 400px;
   height: 500px;
   display: -ms-grid;
   display: grid;
@@ -154,7 +155,7 @@ text.source {
   font-size: 10px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 780px) {
   div#container {
     position: relative;
   }

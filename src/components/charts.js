@@ -23,13 +23,6 @@ class Charts extends Component {
 		if (prevProps.constituency !== this.props.constituency) {
 			this.setState({
 				constituency: this.props.constituency,
-				opening_bal: this.props.opening_bal,
-				total_funds: this.props.total_funds,
-				expenditure_wages: this.props.expenditure_wages,
-				expenditure_materials: this.props.expenditure_materials,
-				total_expenditure: this.props.total_expenditure,
-				unspent_bal: this.props.unspent_bal,
-				payment_due: this.props.payment_due,
 			})
 			document.querySelector('.label').remove()
 			document.querySelector('.main-g').remove()
@@ -38,35 +31,34 @@ class Charts extends Component {
 	}
 
 	drawChart() {
-		console.log(this.state.opening_bal);
 		const data = [
 			{
 				language: 'Opening Balance',
-				value: this.state.opening_bal,
+				value: this.props.opening_bal,
 			},
 			{
 				language: 'Funds Available',
-				value: this.state.total_funds,
+				value: this.props.total_funds,
 			},
 			{
 				language: 'Expenditure-Wages',
-				value: this.state.expenditure_wages,
+				value: this.props.expenditure_wages,
 			},
 			{
 				language: 'Expenditure-Material',
-				value: this.state.expenditure_materials,
+				value: this.props.expenditure_materials,
 			},
 			{
 				language: 'Grand Expenditure',
-				value: this.state.total_expenditure,
+				value: this.props.total_expenditure,
 			},
 			{
 				language: 'Unspent Balance',
-				value: this.state.unspent_bal,
+				value: this.props.unspent_bal,
 			},
 			{
 				language: 'Payment Due',
-				value: this.state.payment_due,
+				value: this.props.payment_due,
 			},
 		]
 
