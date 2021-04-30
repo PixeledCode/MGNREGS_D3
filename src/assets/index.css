@@ -20,6 +20,23 @@ body {
   position: relative;
 }
 
+.navbar {
+  background-color: #145084;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar h1 {
+  margin: 0;
+  color: white;
+  padding: .5rem 3rem;
+}
+
 #map__container {
   height: calc(100% - 100px);
 }
@@ -27,6 +44,16 @@ body {
 #map__container .svgDistrict,
 #map__container .svgDistrictName {
   cursor: pointer;
+}
+
+#map__container .selectedMap {
+  fill: #d36f80;
+}
+
+@media screen and (max-width: 780px) {
+  #map__container {
+    margin-top: -5rem;
+  }
 }
 
 .svg-container {
@@ -44,17 +71,11 @@ body {
   left: 0;
 }
 
-.navbar {
-  background-color: #145084;
-  height: 50px;
-}
-
 div#container {
   top: 10vw;
   left: 2vw;
   position: absolute;
   width: 400px;
-  min-width: 400px;
   height: 500px;
   display: -ms-grid;
   display: grid;
@@ -63,9 +84,23 @@ div#container {
       grid-template-rows: repeat(2, max-content) 1fr;
 }
 
-div#container h1, div#container h3,
+@media screen and (max-width: 780px) {
+  div#container {
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div#container {
+    width: 350px;
+  }
+}
+
+div#container h1,
+div#container h3,
 div#container p {
   padding: 0 2rem;
+  z-index: 100;
 }
 
 div#container h1 {
@@ -89,7 +124,7 @@ div#container h3 {
 }
 
 .bar {
-  fill: #80cbc4;
+  fill: #145084;
 }
 
 text {
@@ -124,40 +159,5 @@ line#limit {
   -webkit-transform: rotate(-45deg) translate(-50px, 0px);
           transform: rotate(-45deg) translate(-50px, 0px);
   z-index: 20;
-}
-
-text.district {
-  font-size: 1.5rem;
-  font-weight: 500;
-  width: 100%;
-}
-
-text.divergence {
-  font-size: 12px;
-  fill: #2F4A6D;
-}
-
-text.value {
-  font-size: 12px;
-}
-
-text.title {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-text.label {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-text.source {
-  font-size: 10px;
-}
-
-@media screen and (max-width: 780px) {
-  div#container {
-    position: relative;
-  }
 }
 /*# sourceMappingURL=index.css.map */

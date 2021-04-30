@@ -24,9 +24,7 @@ class Charts extends Component {
 			this.setState({
 				constituency: this.props.constituency,
 			})
-			document.querySelector('.label').remove()
-			document.querySelector('.main-g').remove()
-			this.drawChart()
+			this.updateChart()
 		}
 	}
 
@@ -121,8 +119,47 @@ class Charts extends Component {
 			.text('Budget (10 Crore INR)')
 	}
 
+	updateChart() {
+		const newData = [
+			{
+				value: this.props.opening_bal,
+			},
+			{
+				value: this.props.total_funds,
+			},
+			{
+				value: this.props.expenditure_wages,
+			},
+			{
+				value: this.props.expenditure_materials,
+			},
+			{
+				value: this.props.total_expenditure,
+			},
+			{
+				value: this.props.unspent_bal,
+			},
+			{
+				value: this.props.payment_due,
+			},
+		]
+		const margin = 80
+		const chartDOM = document.querySelector('#container')
+		const height = chartDOM.clientHeight - margin * 3
+		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
+
+		const bar = d3.selectAll('.bar').data(newData).transition().duration(200)
+		bar
+		.attr('y', (g) => yScale(g.value / 10000000))
+		.attr('height', (g) => height - yScale(g.value / 10000000))
+	
+		const value = d3.selectAll('.value').data(newData).transition().duration(200)
+		value
+		.attr('y', (a) => yScale(a.value / 10000000) - 10)
+		.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
+	}
+
 	render() {
-		
 		return (
 			<div id="container">
 				<h1>MGNREGS (2019-20)</h1>
