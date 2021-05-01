@@ -73,6 +73,10 @@ body {
   @media screen and (max-width: 780px) {
     margin-top: -5rem;
   }
+
+  &.filterMap {
+    margin-top: 0;
+  }
 }
 
 .svg-container {

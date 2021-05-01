@@ -79,6 +79,10 @@ body {
   }
 }
 
+#map__container.filterMap {
+  margin-top: 0;
+}
+
 .svg-container {
   display: inline-block;
   position: relative;

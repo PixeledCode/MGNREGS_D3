@@ -87,7 +87,7 @@ class Filter extends Component {
 		var color = d3
 			.scaleThreshold()
 			.domain(d3.range(2, 18))
-			.range(d3.schemeBlues[6])
+			.range(d3.schemeBlues[3])
 		// .domain([0, 5, 9])
 		// .range(["blue", "yellow", "green"]);
 
@@ -131,7 +131,7 @@ class Filter extends Component {
 	render() {
 		return (
 			<>
-				<div id={'map__container'}></div>
+				<div id={'map__container'} className="filterMap"></div>
 			</>
 		)
 	}
