@@ -187,14 +187,5 @@
     "total_expenditure": 1351008000,
     "unspent_bal": 32329000,
     "payment_due": 25915000
-  },
-  "Grand Total": {
-    "opening_bal": 93189000,
-    "total_funds": 17185662000,
-    "expenditure_wages": 13698436000,
-    "expenditure_materials": 4820796000,
-    "total_expenditure": 18594812000,
-    "unspent_bal": 1409154000,
-    "payment_due": 317819000
   }
 }
