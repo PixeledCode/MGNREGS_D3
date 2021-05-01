@@ -88,9 +88,15 @@ body {
     .svgDistrictName {
       cursor: default;
     }
+     .svgDistrictName {
+      pointer-events: none;
+
+     }
+
 
     .tooltip-area {
       background-color: white;
+      pointer-events: none;
 
       text {
         font-size: .7rem;
@@ -183,6 +189,13 @@ div#container {
 // bar chart
 .main-g {
   transform: translate(4rem, 3rem);
+  text {
+  
+    &.value {
+      font-size: 12px;
+    }
+  
+  }
 }
 
 .bar {

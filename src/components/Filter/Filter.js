@@ -136,7 +136,7 @@ class Filter extends Component {
 		function mouseOutHandler() {
 			d3.select(this).attr('stroke', '#fff').attr('stroke-width', 0.5)
 			d3.select('.tooltip-area')
-			// .style("visibility", "hidden");
+			.style("visibility", "hidden");
 		}
 
 		const mousemove = (d, i) => {

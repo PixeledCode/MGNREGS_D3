@@ -99,8 +99,13 @@ body {
   cursor: default;
 }
 
+#map__container.filterMap .svgDistrictName {
+  pointer-events: none;
+}
+
 #map__container.filterMap .tooltip-area {
   background-color: white;
+  pointer-events: none;
 }
 
 #map__container.filterMap .tooltip-area text {
@@ -199,6 +204,10 @@ div#container.filter-container #district {
 .main-g {
   -webkit-transform: translate(4rem, 3rem);
           transform: translate(4rem, 3rem);
+}
+
+.main-g text.value {
+  font-size: 12px;
 }
 
 .bar {
