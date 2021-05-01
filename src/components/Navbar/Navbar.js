@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 function Navbar() {
 		const router = useLocation();
 
-		console.log(router);
 		return (
 			<div className="navbar">
 				<Link className="logo" to="/"><h1>MGNREGS</h1></Link>

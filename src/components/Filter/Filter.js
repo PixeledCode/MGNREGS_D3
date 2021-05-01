@@ -80,7 +80,6 @@ class Filter extends Component {
 			budget.d.properties.pc_name = d.properties.pc_name['opening_bal']
 		})
 
-		console.log(budget)
 		// Prepare SVG path and color, import the
 		// effect from above projection.
 		const path = d3.geoPath().projection(projection)
