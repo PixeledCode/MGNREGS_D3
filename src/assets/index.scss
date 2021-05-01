@@ -25,6 +25,7 @@ body {
   background-color: #145084;
   height: 50px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
 
   h1 {
@@ -32,6 +33,29 @@ body {
     color: white;
     padding: .5rem 3rem;
   }
+
+  a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+
+    &.active {
+      color: #d36f80;
+      font-weight: 500;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    h1 {
+      padding: .5rem 1rem;
+      font-size: 1.5rem;
+    }
+
+    a {
+      font-size: .9rem;
+    }
+  }
+
 }
 
 #map__container {
@@ -136,7 +160,6 @@ line {
   }
 }
 
-
 .grid {
   path {
     stroke-width: 0;
@@ -151,4 +174,12 @@ line {
 .alt-g text {
   transform: rotate(-45deg) translate(-50px, 0px);
   z-index: 20;
+}
+
+// 404
+.error {
+  width: 100vw;
+  height: 95vh;
+  display: grid;
+  place-content: center;
 }

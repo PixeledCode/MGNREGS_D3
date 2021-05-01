@@ -26,6 +26,8 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -35,6 +37,27 @@ body {
   margin: 0;
   color: white;
   padding: .5rem 3rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.navbar a.active {
+  color: #d36f80;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar h1 {
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+  }
+  .navbar a {
+    font-size: .9rem;
+  }
 }
 
 #map__container {
@@ -159,5 +182,13 @@ line#limit {
   -webkit-transform: rotate(-45deg) translate(-50px, 0px);
           transform: rotate(-45deg) translate(-50px, 0px);
   z-index: 20;
+}
+
+.error {
+  width: 100vw;
+  height: 95vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
 
-class Charts extends Component {
+class Chart extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -175,4 +175,4 @@ class Charts extends Component {
 	}
 }
 
-export default Charts
+export default Chart

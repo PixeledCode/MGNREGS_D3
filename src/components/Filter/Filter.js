@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import odisha from 'assets/odihsa'
 import data from 'assets/data.json'
-// import Chart from './chart'
-import Charts from 'components/charts'
 
-class Map extends Component {
+class Filter extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -31,6 +29,7 @@ class Map extends Component {
 		const HOVER_COLOR = '#d36f80'
 		let fitSVG = WIDTH / 3
 		if (WIDTH < 780) fitSVG = 0
+		const budget = {}
 		// --------------- Event handler ---------------
 
 		function mouseOverHandler(d, i) {
@@ -42,9 +41,9 @@ class Map extends Component {
 		}
 
 		const clickHandler = (d, i) => {
-			if(document.querySelector('.selectedMap'))
+			if (document.querySelector('.selectedMap'))
 				document.querySelector('.selectedMap').classList.remove('selectedMap')
-			
+
 			document.getElementById(i.properties.pc_name).classList.add('selectedMap')
 			this.setState({
 				initial: false,
@@ -77,10 +76,21 @@ class Map extends Component {
 			odisha
 		)
 
+		d3.json('data.json', function (d) {
+			budget.d.properties.pc_name = d.properties.pc_name['opening_bal']
+		})
+
+		console.log(budget)
 		// Prepare SVG path and color, import the
 		// effect from above projection.
 		const path = d3.geoPath().projection(projection)
-		const color = '#9ecae1'
+		// const color = '#9ecae1'
+		var color = d3
+			.scaleThreshold()
+			.domain(d3.range(2, 18))
+			.range(d3.schemeBlues[6])
+		// .domain([0, 5, 9])
+		// .range(["blue", "yellow", "green"]);
 
 		const g = svg.attr('class', 'svgMap')
 		function renderMap(root) {
@@ -91,9 +101,11 @@ class Map extends Component {
 				.enter()
 				.append('path')
 				.attr('class', 'svgDistrict')
-				.attr('id', ((d) => d.properties.pc_name))
+				.attr('id', (d) => d.properties.pc_name)
 				.attr('d', path)
 				.attr('fill', color)
+				// .attr("fill", function(d) {
+				//   return color(d.Poverty = data.get(d.properties.pc_name)); })
 				.attr('stroke', '#FFF')
 				.attr('stroke-width', 0.5)
 				.on('mouseover', mouseOverHandler)
@@ -120,20 +132,10 @@ class Map extends Component {
 	render() {
 		return (
 			<>
-				<Charts
-					constituency={this.state.constituency}
-					opening_bal={this.state.opening_bal}
-					total_funds={this.state.total_funds}
-					expenditure_wages={this.state.expenditure_wages}
-					expenditure_materials={this.state.expenditure_materials}
-					total_expenditure={this.state.total_expenditure}
-					unspent_bal={this.state.unspent_bal}
-					payment_due={this.state.payment_due}
-				/>
 				<div id={'map__container'}></div>
 			</>
 		)
 	}
 }
 
-export default Map
+export default Filter

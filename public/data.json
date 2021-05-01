@@ -1,0 +1,200 @@
+{
+  "Aska": {
+    "opening_bal": 138000,
+    "total_funds": 1030574000,
+    "expenditure_wages": 796017000,
+    "expenditure_materials": 234236000,
+    "total_expenditure": 1030491000,
+    "unspent_bal": 78000,
+    "payment_due": 12780000
+  },
+  "Balasore": {
+    "opening_bal": 4660000,
+    "total_funds": 233869000,
+    "expenditure_wages": 203883000,
+    "expenditure_materials": 57571000,
+    "total_expenditure": 262518000,
+    "unspent_bal": 28658000,
+    "payment_due": 2118000
+  },
+  "Bargarh": {
+    "opening_bal": 7792000,
+    "total_funds": 868362000,
+    "expenditure_wages": 833446000,
+    "expenditure_materials": 226586000,
+    "total_expenditure": 1073609000,
+    "unspent_bal": 205235000,
+    "payment_due": 9041000
+  },
+  "Berhampur": {
+    "opening_bal": 363000,
+    "total_funds": 825546000,
+    "expenditure_wages": 647195000,
+    "expenditure_materials": 180506000,
+    "total_expenditure": 827745000,
+    "unspent_bal": 2205000,
+    "payment_due": 17027000
+  },
+  "Bhadrak": {
+    "opening_bal": 844000,
+    "total_funds": 300331000,
+    "expenditure_wages": 296893000,
+    "expenditure_materials": 22438000,
+    "total_expenditure": 319486000,
+    "unspent_bal": 19155000,
+    "payment_due": 15907000
+  },
+  "Bhubaneswar": {
+    "opening_bal": 1230000,
+    "total_funds": 102935000,
+    "expenditure_wages": 92689000,
+    "expenditure_materials": 17917000,
+    "total_expenditure": 110700000,
+    "unspent_bal": 7758000,
+    "payment_due": 605000
+  },
+  "Bolangir": {
+    "opening_bal": 6628000,
+    "total_funds": 1270870000,
+    "expenditure_wages": 1098068000,
+    "expenditure_materials": 181558000,
+    "total_expenditure": 1280716000,
+    "unspent_bal": 9849000,
+    "payment_due": 22359000
+  },
+  "Cuttack": {
+    "opening_bal": 793000,
+    "total_funds": 155031000,
+    "expenditure_wages": 305953000,
+    "expenditure_materials": 84838000,
+    "total_expenditure": 391191000,
+    "unspent_bal": 236161000,
+    "payment_due": 7841000
+  },
+  "Dhenkanal": {
+    "opening_bal": 4981000,
+    "total_funds": 795376000,
+    "expenditure_wages": 583291000,
+    "expenditure_materials": 260118000,
+    "total_expenditure": 848921000,
+    "unspent_bal": 53535000,
+    "payment_due": 14457000
+  },
+  "Jagatsinghpur": {
+    "opening_bal": 4846000,
+    "total_funds": 85378000,
+    "expenditure_wages": 131030000,
+    "expenditure_materials": 50301000,
+    "total_expenditure": 182286000,
+    "unspent_bal": 96908000,
+    "payment_due": 3008000
+  },
+  "Jajpur": {
+    "opening_bal": 10000,
+    "total_funds": 380202000,
+    "expenditure_wages": 356912000,
+    "expenditure_materials": 86836000,
+    "total_expenditure": 443958000,
+    "unspent_bal": 63748000,
+    "payment_due": 6900000
+  },
+  "Kalahandi": {
+    "opening_bal": 6358000,
+    "total_funds": 959120000,
+    "expenditure_wages": 762043000,
+    "expenditure_materials": 212460000,
+    "total_expenditure": 976863000,
+    "unspent_bal": 17743000,
+    "payment_due": 26707000
+  },
+  "Kandhamal": {
+    "opening_bal": 1876000,
+    "total_funds": 974059000,
+    "expenditure_wages": 802281000,
+    "expenditure_materials": 208916000,
+    "total_expenditure": 1011904000,
+    "unspent_bal": 37856000,
+    "payment_due": 24242000
+  },
+  "Kendrapara": {
+    "opening_bal": 0,
+    "total_funds": 200141000,
+    "expenditure_wages": 437153000,
+    "expenditure_materials": 137342000,
+    "total_expenditure": 575060000,
+    "unspent_bal": 374916000,
+    "payment_due": 9638000
+  },
+  "Keonjhar": {
+    "opening_bal": 21735000,
+    "total_funds": 1400574000,
+    "expenditure_wages": 1058761000,
+    "expenditure_materials": 381546000,
+    "total_expenditure": 1446965000,
+    "unspent_bal": 46394000,
+    "payment_due": 12503000
+  },
+  "Koraput": {
+    "opening_bal": 74541000,
+    "total_funds": 1858943000,
+    "expenditure_wages": 1222957000,
+    "expenditure_materials": 745226000,
+    "total_expenditure": 1992701000,
+    "unspent_bal": 133762000,
+    "payment_due": 44542000
+  },
+  "Mayurbhanj": {
+    "opening_bal": 59000,
+    "total_funds": 1851866000,
+    "expenditure_wages": 946001000,
+    "expenditure_materials": 884268000,
+    "total_expenditure": 1838728000,
+    "unspent_bal": 13132000,
+    "payment_due": 12289000
+  },
+  "Nabarangpur": {
+    "opening_bal": 1381000,
+    "total_funds": 1609879000,
+    "expenditure_wages": 1253674000,
+    "expenditure_materials": 364659000,
+    "total_expenditure": 1623075000,
+    "unspent_bal": 13179000,
+    "payment_due": 31339000
+  },
+  "Puri": {
+    "opening_bal": 317000,
+    "total_funds": 314858000,
+    "expenditure_wages": 304151000,
+    "expenditure_materials": 47784000,
+    "total_expenditure": 353293000,
+    "unspent_bal": 38440000,
+    "payment_due": 6174000
+  },
+  "Sambalpur": {
+    "opening_bal": 4412000,
+    "total_funds": 649069000,
+    "expenditure_wages": 504313000,
+    "expenditure_materials": 147736000,
+    "total_expenditure": 653594000,
+    "unspent_bal": 4533000,
+    "payment_due": 12427000
+  },
+  "Sundargarh": {
+    "opening_bal": 97000,
+    "total_funds": 1318679000,
+    "expenditure_wages": 1061725000,
+    "expenditure_materials": 287954000,
+    "total_expenditure": 1351008000,
+    "unspent_bal": 32329000,
+    "payment_due": 25915000
+  },
+  "Grand Total": {
+    "opening_bal": 93189000,
+    "total_funds": 17185662000,
+    "expenditure_wages": 13698436000,
+    "expenditure_materials": 4820796000,
+    "total_expenditure": 18594812000,
+    "unspent_bal": 1409154000,
+    "payment_due": 317819000
+  }
+}
