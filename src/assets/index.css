@@ -331,8 +331,8 @@ body {
   transition: -webkit-transform ease-in 0.1s, -webkit-box-shadow ease-in 0.25s;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s, -webkit-transform ease-in 0.1s, -webkit-box-shadow ease-in 0.25s;
-  -webkit-box-shadow: 0 2px 25px rgba(245, 115, 182, 0.5);
-          box-shadow: 0 2px 25px rgba(245, 115, 182, 0.5);
+  -webkit-box-shadow: 0 1px 10px #145085;
+          box-shadow: 0 1px 10px #145085;
   border: none;
   outline: none;
   cursor: pointer;
@@ -344,8 +344,8 @@ body {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
   background-color: #11436f;
-  -webkit-box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-          box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+  -webkit-box-shadow: 0 1px 10px #0d3659;
+          box-shadow: 0 1px 10px #0d3659;
 }
 
 #compareContainer .selector-section p#info {

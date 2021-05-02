@@ -306,7 +306,7 @@ body {
       margin-top: 1rem;
       border-radius: 4px;
       transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-      box-shadow: 0 2px 25px rgba(245, 115, 182, 0.5);
+      box-shadow: 0 1px 10px hsl(208, 74%, 30%);
       border: none;
       outline: none;
       cursor: pointer;
@@ -316,7 +316,7 @@ body {
       &:active {
         transform: scale(0.9);
         background-color: darken(hsl(208, 74%, 30%), 5%);
-        box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+        box-shadow: 0 1px 10px hsl(208, 74%, 20%);
       }
     }
 
