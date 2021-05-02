@@ -6,13 +6,6 @@ class Chart extends Component {
 		super(props)
 		this.state = {
 			constituency: '',
-			opening_bal: 0,
-			total_funds: 0,
-			expenditure_wages: 0,
-			expenditure_materials: 0,
-			total_expenditure: 0,
-			unspent_bal: 0,
-			payment_due: 0,
 		}
 	}
 	componentDidMount() {
@@ -116,7 +109,7 @@ class Chart extends Component {
 			.attr('y', (width / margin) * 3)
 			.attr('transform', 'rotate(-90)')
 			.attr('text-anchor', 'middle')
-			.text('Budget (10 Crore INR)')
+			.text('Budget ( x10 Crore INR )')
 	}
 
 	updateChart() {
@@ -150,24 +143,33 @@ class Chart extends Component {
 
 		const bar = d3.selectAll('.bar').data(newData).transition().duration(200)
 		bar
-		.attr('y', (g) => yScale(g.value / 10000000))
-		.attr('height', (g) => height - yScale(g.value / 10000000))
-	
-		const value = d3.selectAll('.value').data(newData).transition().duration(200)
+			.attr('y', (g) => yScale(g.value / 10000000))
+			.attr('height', (g) => height - yScale(g.value / 10000000))
+
+		const value = d3
+			.selectAll('.value')
+			.data(newData)
+			.transition()
+			.duration(200)
 		value
-		.attr('y', (a) => yScale(a.value / 10000000) - 10)
-		.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
+			.attr('y', (a) => yScale(a.value / 10000000) - 10)
+			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 	}
 
 	render() {
 		return (
 			<div id="container">
 				<h1>MGNREGS (2019-20)</h1>
-				<p>
-					Data Visualization to analyse expenditures for Mahatma Gandhi National
-					Rural Employment Guarantee Scheme (MGNREGS) in parliamentary
-					constituencies of Odisha for the financial year 2019-20.
-				</p>
+				<section>
+					<p>
+						Data Visualization to analyse expenditures for Mahatma Gandhi
+						National Rural Employment Guarantee Scheme (MGNREGS) in
+						parliamentary constituencies of Odisha for the financial year
+						2019-20.
+					</p>
+					<p id="info">Click on map to display expenditures</p>
+				</section>
+
 				<h3>{this.state.constituency}</h3>
 				<svg id={'chart'} viewBox="0 0 400 500" />
 			</div>

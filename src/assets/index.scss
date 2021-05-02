@@ -21,6 +21,8 @@ body {
   position: relative;
 }
 
+
+
 .navbar {
   background-color: #145084;
   height: 50px;
@@ -40,7 +42,7 @@ body {
     margin-right: 1rem;
 
     &.active {
-      color: #d36f80;
+      color: hsl(350, 100%, 63%);
       font-weight: 500;
     }
   }
@@ -69,13 +71,14 @@ body {
     @media screen and (max-width: 800px) {
       font-size: 10px;
     }
+
     @media screen and (max-width: 500px) {
       font-size: 8px;
     }
   }
 
   .selectedMap {
-    fill: #d36f80;
+    fill: hsl(350, 100%, 63%);
   }
 
   @media screen and (max-width: 780px) {
@@ -88,10 +91,10 @@ body {
     .svgDistrictName {
       cursor: default;
     }
-     .svgDistrictName {
-      pointer-events: none;
 
-     }
+    .svgDistrictName {
+      pointer-events: none;
+    }
 
 
     .tooltip-area {
@@ -129,6 +132,12 @@ div#container {
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr;
   z-index: 100;
+
+  p#info {
+    margin: 0;
+    font-size: .7rem;
+    color: hsl(0, 2%, 50%);
+  }
 
   @media screen and (max-width: 780px) {
     position: relative;
@@ -173,6 +182,13 @@ div#container {
       }
     }
 
+    p#info {
+      margin: 0;
+      padding-bottom: .1rem;
+      font-size: .7rem;
+      color: hsl(0, 2%, 50%);
+    }
+
     #district {
       width: 200px;
       height: 2rem;
@@ -182,21 +198,29 @@ div#container {
       color: white;
       padding: 0 .5rem;
       margin-left: 2rem;
+      border-radius: 4px;
     }
   }
 }
 
 // bar chart
-.main-g {
-  transform: translate(4rem, 3rem);
-  text {
-  
-    &.value {
-      font-size: 12px;
+svg#chart {
+  .main-g {
+    transform: translate(4rem, 3rem);
+
+    text {
+      &.value {
+        font-size: 12px;
+      }
     }
-  
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 400;
   }
 }
+
 
 .bar {
   fill: #145084;
@@ -235,12 +259,13 @@ line {
 // 404
 .error {
   width: 100vw;
-  height: 95vh;
+  height: 90vh;
   display: grid;
   place-content: center;
 }
 
-#map-census-key {
+// filter
+#map-budget-key {
   padding: 0 2rem;
   width: 300px;
   margin: 20px 0;
@@ -261,5 +286,133 @@ line {
       font-size: .7rem;
       text-align: center;
     }
+  }
+}
+
+// compare
+#compareContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: calc(100% - 50px);
+  display: grid;
+  // justify-content: center;
+  grid-template-rows: max-content 100px;
+
+  .heading {
+    text-align: center;
+
+    h1 {
+      margin: 0;
+      padding-top: 2rem;
+    }
+  }
+
+  .selector-section {
+    display: grid;
+    grid-template-columns: repeat(2, 170px);
+    justify-content: space-around;
+    width: 95vw;
+    max-width: 450px;
+
+    justify-self: center;
+
+    .selector {
+      height: 2rem;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 0 .5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 150px;
+      justify-self: center;
+    }
+
+    #districtSelector1 {
+      background-color: hsl(248, 100, 65);
+    }
+
+    #districtSelector2 {
+      background-color: hsl(350, 100%, 63%);
+    }
+
+    #compareButton {
+      justify-self: center;
+      grid-column: 1 / 3;
+      width: 7rem;
+      height: 2.5rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+      box-shadow: 0 2px 25px rgba(245, 115, 182, 0.5);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: hsl(208, 74%, 30%);
+      color: white;
+
+      &:active {
+        transform: scale(0.9);
+        background-color: darken(hsl(208, 74%, 30%), 5%);
+        box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+      }
+    }
+    p#info {
+      grid-column: 1 / 3;
+      text-align: center;
+      font-size: .7rem;
+      color: hsl(0, 2%, 50%);
+    }
+  }
+
+  #svgContainer {
+    position: relative;
+    height: 100%;
+    max-height: 700px;
+
+    .svg-container {
+      height: 100%;
+
+      .main-g {
+        transform: translate(0, -80px);
+
+        .bar {
+          fill: hsl(248, 100, 65);
+        }
+
+        .bar2 {
+          fill: hsl(350, 100%, 63%);
+        }
+
+        .alt-g text {
+          transform: rotate(-45deg) translate(-30px, 15px);
+          font-size: .7rem;
+        }
+      }
+    }
+
+    .tooltip-area {
+      background-color: white;
+      pointer-events: none;
+
+      text {
+        font-size: .7rem;
+      }
+    }
+
+    text {
+
+      &.value2,
+      &.value {
+        font-size: 12px;
+
+        @media screen and (max-width: 800px) {
+          visibility: hidden;
+          // transform: rotate(9deg);
+        }
+      }
+    }
+
   }
 }

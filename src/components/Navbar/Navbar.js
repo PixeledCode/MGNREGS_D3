@@ -8,9 +8,9 @@ function Navbar() {
 				<Link className="logo" to="/"><h1>MGNREGS</h1></Link>
 				
 				<div className="nav-links">
-					<Link className={router.pathname === "/" ? "active" : ""}  to="/">Home </Link>
-					<Link className={router.pathname === "/filter" ? "active" : ""} to="/filter">Filter </Link>
-					<Link className={router.pathname === "/compare" ? "active" : ""} to="/compare">Compare </Link>
+					<Link className={router.pathname === "/" ? "active" : ""}  to="/">HOME</Link>
+					<Link className={router.pathname === "/filter" ? "active" : ""} to="/filter">FILTER</Link>
+					<Link className={router.pathname === "/compare" ? "active" : ""} to="/compare">COMPARE</Link>
 				</div>
 			</div>
 		)

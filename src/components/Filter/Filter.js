@@ -38,15 +38,6 @@ class Filter extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			constituency: '',
-			opening_bal: 0,
-			total_funds: 0,
-			expenditure_wages: 0,
-			expenditure_materials: 0,
-			total_expenditure: 0,
-			unspent_bal: 0,
-			payment_due: 0,
-			initial: true,
 			hue: 200,
 			lightness: [95, 85, 75, 65, 55, 45],
 			rangeArray: ['0', '1<', '1-50', '51-100', '101-500', '500+'],
@@ -66,7 +57,7 @@ class Filter extends Component {
 
 	updateCategory(value) {
 		const blue = ['opening_bal', 'unspent_bal', 'payment_due']
-		const green = ['total_funds', 'total_expenditure']
+		const purple = ['total_funds', 'total_expenditure']
 
 		if (blue.includes(value)) {
 			this.setState({
@@ -76,24 +67,16 @@ class Filter extends Component {
 				rangeValue: 100000,
 				rangeArray: ['0', '1<', '1-50', '51-100', '101-500', '500+'],
 			})
-		} else if (green.includes(value)) {
-			this.setState({
-				hue: 147,
-				lightness: [85, 75, 65, 55, 45],
-				rangeText: 'Crores',
-				rangeValue: 10000000,
-				rangeArray: ['1-10', '11-50', '51-100', '101-150', '150+'],
-			})
 		} else {
+			if (purple.includes(value)) this.setState({ hue: 248 })
+			else this.setState({ hue: 350 })
 			this.setState({
-				hue: 0,
 				lightness: [85, 75, 65, 55, 45],
 				rangeText: 'Crores',
 				rangeValue: 10000000,
 				rangeArray: ['1-10', '11-50', '51-100', '101-150', '150+'],
 			})
 		}
-
 		this.setState({ category: value })
 	}
 
@@ -106,7 +89,6 @@ class Filter extends Component {
 		for (let val in data) {
 			budget[val] = data[val][this.state.category]
 		}
-
 		d3.selectAll('.svgDistrict')
 			.transition()
 			.duration(150)
@@ -135,8 +117,7 @@ class Filter extends Component {
 
 		function mouseOutHandler() {
 			d3.select(this).attr('stroke', '#fff').attr('stroke-width', 0.5)
-			d3.select('.tooltip-area')
-			.style("visibility", "hidden");
+			d3.select('.tooltip-area').style('visibility', 'hidden')
 		}
 
 		const mousemove = (d, i) => {
@@ -204,7 +185,6 @@ class Filter extends Component {
 				.on('mouseover', mouseOverHandler)
 				.on('mouseout', mouseOutHandler)
 				.on('mousemove', mousemove)
-			// .on('click', clickHandler)
 
 			g.append('g')
 				.selectAll('text')
@@ -216,7 +196,6 @@ class Filter extends Component {
 				.attr('text-anchor', 'middle')
 				.attr('font-size', 10)
 				.text((d) => d.properties.pc_name)
-			// .on('click', clickHandler)
 
 			g.append('g')
 				.attr('class', 'tooltip-area')
@@ -272,7 +251,7 @@ class Filter extends Component {
 						parliamentary constituencies of Odisha for the financial year
 						2019-20.
 					</p>
-					<div id="map-census-key">
+					<div id="map-budget-key">
 						{this.state.lightness.map((val, index) => {
 							return (
 								<div
@@ -294,6 +273,7 @@ class Filter extends Component {
 							Range is in <span>{this.state.rangeText}</span>
 						</p>
 					</div>
+					<p id="info">Select a category to change data</p>
 					<select
 						id="district"
 						onChange={(e) => this.updateCategory(e.target.value)}
