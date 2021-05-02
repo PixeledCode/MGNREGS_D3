@@ -5,10 +5,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 #root,
 .App,
 html,
@@ -18,6 +14,22 @@ body {
 
 .App {
   position: relative;
+}
+
+.App .tooltip-area {
+  pointer-events: none;
+}
+
+.App .tooltip-area text {
+  font-size: .7rem;
+}
+
+.App p#info {
+  margin: 0;
+  font-size: .7rem;
+  color: #827d7d;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .navbar {
@@ -61,7 +73,7 @@ body {
 }
 
 #map__container {
-  height: calc(100% - 100px);
+  height: calc(100% - 50px);
 }
 
 #map__container .svgDistrict,
@@ -88,12 +100,6 @@ body {
   fill: #ff4262;
 }
 
-@media screen and (max-width: 780px) {
-  #map__container {
-    margin-top: -5rem;
-  }
-}
-
 #map__container.filterMap .svgDistrict,
 #map__container.filterMap .svgDistrictName {
   cursor: default;
@@ -103,13 +109,10 @@ body {
   pointer-events: none;
 }
 
-#map__container.filterMap .tooltip-area {
-  background-color: white;
-  pointer-events: none;
-}
-
-#map__container.filterMap .tooltip-area text {
-  font-size: .7rem;
+@media screen and (max-width: 780px) {
+  #map__container {
+    margin-top: -5rem;
+  }
 }
 
 .svg-container {
@@ -120,14 +123,14 @@ body {
   overflow: hidden;
 }
 
-.svg-content-responsive {
+.svg-container.svg-content-responsive {
   display: inline-block;
   position: absolute;
   top: 50px;
   left: 0;
 }
 
-div#container {
+#container {
   top: 10vw;
   left: 2vw;
   position: absolute;
@@ -141,46 +144,61 @@ div#container {
   z-index: 100;
 }
 
-div#container p#info {
-  margin: 0;
-  font-size: .7rem;
-  color: #827d7d;
-}
-
-@media screen and (max-width: 780px) {
-  div#container {
-    position: relative;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  div#container {
-    width: 350px;
-  }
-}
-
-div#container h1,
-div#container h3,
-div#container p {
+#container h1,
+#container h3,
+#container p {
   padding: 0 2rem;
 }
 
-div#container h1 {
+#container h1 {
   font-size: 1.5rem;
   margin-bottom: 0;
 }
 
-div#container p {
-  font-size: .8rem;
-}
-
-div#container h3 {
+#container h3 {
   height: 23px;
   margin-bottom: -30px;
   font-weight: 500;
 }
 
-div#container.filter-container {
+#container p {
+  font-size: .8rem;
+}
+
+#container #chart .main-g {
+  -webkit-transform: translate(4rem, 3rem);
+          transform: translate(4rem, 3rem);
+}
+
+#container #chart .main-g .alt-g text {
+  -webkit-transform: rotate(-45deg) translate(-50px, 0px);
+          transform: rotate(-45deg) translate(-50px, 0px);
+  z-index: 20;
+}
+
+#container #chart .main-g text.value {
+  font-size: 12px;
+}
+
+#container #chart .main-g .bar {
+  fill: #145084;
+}
+
+#container #chart .label {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#container #chart .grid path {
+  stroke-width: 0;
+}
+
+#container #chart .grid .tick line {
+  stroke: #9FAAAE;
+  stroke-opacity: 0.3;
+}
+
+#container.filter-container {
   -ms-grid-rows: (max-content)[4];
       grid-template-rows: repeat(4, -webkit-max-content);
       grid-template-rows: repeat(4, max-content);
@@ -188,22 +206,15 @@ div#container.filter-container {
   height: 310px;
 }
 
-div#container.filter-container .range-value {
+#container.filter-container .range-value {
   padding: 1rem 0;
 }
 
-div#container.filter-container .range-value span {
+#container.filter-container .range-value span {
   font-weight: 500;
 }
 
-div#container.filter-container p#info {
-  margin: 0;
-  padding-bottom: .1rem;
-  font-size: .7rem;
-  color: #827d7d;
-}
-
-div#container.filter-container #district {
+#container.filter-container #district {
   width: 200px;
   height: 2rem;
   border: none;
@@ -215,83 +226,40 @@ div#container.filter-container #district {
   border-radius: 4px;
 }
 
-svg#chart .main-g {
-  -webkit-transform: translate(4rem, 3rem);
-          transform: translate(4rem, 3rem);
-}
-
-svg#chart .main-g text.value {
-  font-size: 12px;
-}
-
-svg#chart .label {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.bar {
-  fill: #145084;
-}
-
-path {
-  stroke: 000;
-}
-
-line {
-  stroke: 000;
-}
-
-line#limit {
-  stroke: #FED966;
-  stroke-width: 3;
-  stroke-dasharray: 3 6;
-}
-
-.grid path {
-  stroke-width: 0;
-}
-
-.grid .tick line {
-  stroke: #9FAAAE;
-  stroke-opacity: 0.3;
-}
-
-.alt-g text {
-  -webkit-transform: rotate(-45deg) translate(-50px, 0px);
-          transform: rotate(-45deg) translate(-50px, 0px);
-  z-index: 20;
-}
-
-.error {
-  width: 100vw;
-  height: 90vh;
-  display: -ms-grid;
-  display: grid;
-  place-content: center;
-}
-
-#map-budget-key {
+#container.filter-container #map-budget-key {
   padding: 0 2rem;
   width: 300px;
   margin: 20px 0;
 }
 
-#map-budget-key .key-block {
+#container.filter-container #map-budget-key .key-block {
   float: left;
   width: 15%;
   margin-right: 1%;
 }
 
-#map-budget-key .key-block .key-color-block {
+#container.filter-container #map-budget-key .key-block .key-color-block {
   width: 100%;
   float: left;
   height: 10px;
   background-color: #fff;
 }
 
-#map-budget-key .key-block .range {
+#container.filter-container #map-budget-key .key-block .range {
   font-size: .7rem;
   text-align: center;
+}
+
+@media screen and (max-width: 780px) {
+  #container {
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #container {
+    width: 350px;
+  }
 }
 
 #compareContainer {
@@ -385,8 +353,6 @@ line#limit {
   -ms-grid-column-span: 2;
   grid-column: 1 / 3;
   text-align: center;
-  font-size: .7rem;
-  color: #827d7d;
 }
 
 #compareContainer #svgContainer {
@@ -395,35 +361,26 @@ line#limit {
   max-height: 700px;
 }
 
-#compareContainer #svgContainer .svg-container {
+#compareContainer #svgContainer #chart.svg-container {
   height: 100%;
 }
 
-#compareContainer #svgContainer .svg-container .main-g {
+#compareContainer #svgContainer #chart.svg-container .main-g {
   -webkit-transform: translate(0, -80px);
           transform: translate(0, -80px);
 }
 
-#compareContainer #svgContainer .svg-container .main-g .bar {
+#compareContainer #svgContainer #chart.svg-container .main-g .bar {
   fill: #644dff;
 }
 
-#compareContainer #svgContainer .svg-container .main-g .bar2 {
+#compareContainer #svgContainer #chart.svg-container .main-g .bar2 {
   fill: #ff4262;
 }
 
-#compareContainer #svgContainer .svg-container .main-g .alt-g text {
+#compareContainer #svgContainer #chart.svg-container .main-g .alt-g text {
   -webkit-transform: rotate(-45deg) translate(-30px, 15px);
           transform: rotate(-45deg) translate(-30px, 15px);
-  font-size: .7rem;
-}
-
-#compareContainer #svgContainer .tooltip-area {
-  background-color: white;
-  pointer-events: none;
-}
-
-#compareContainer #svgContainer .tooltip-area text {
   font-size: .7rem;
 }
 
@@ -435,5 +392,13 @@ line#limit {
   #compareContainer #svgContainer text.value2, #compareContainer #svgContainer text.value {
     visibility: hidden;
   }
+}
+
+.error {
+  width: 100vw;
+  height: 90vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 /*# sourceMappingURL=index.css.map */

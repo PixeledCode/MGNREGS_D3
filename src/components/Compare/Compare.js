@@ -93,6 +93,7 @@ class Chart extends Component {
 	}
 
 	drawChart() {
+		// updating objects for chart
 		for (let val of data1) val['value'] = data[this.state.district1][val['id']]
 		for (let val of data2) val['value'] = data[this.state.district2][val['id']]
 
@@ -127,9 +128,6 @@ class Chart extends Component {
 			.attr('viewBox', `0 0 ${width} ${height - 100}`)
 			.classed('svg-content-responsive', true)
 
-		const chart1 = svg.append('g').attr('class', 'main-g')
-		const chart2 = svg.append('g').attr('class', 'main-g second-g')
-
 		const xScale = d3
 			.scaleBand()
 			.range([0, width])
@@ -138,15 +136,15 @@ class Chart extends Component {
 
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
 
+		const chart1 = svg.append('g').attr('class', 'main-g')
 		chart1
 			.append('g')
 			.attr('class', 'alt-g')
 			.attr('transform', `rotate(0) translate(0, ${height + 100})`)
 			.call(d3.axisBottom(xScale))
 
+		// 1st Bar Chart
 		const barGroups = chart1.selectAll().data(data1).enter().append('g')
-		const barGroups2 = chart2.selectAll().data(data2).enter().append('g')
-
 		barGroups
 			.append('rect')
 			.attr('class', 'bar')
@@ -168,6 +166,9 @@ class Chart extends Component {
 			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 			.attr('transform', `translate(-30,100)`)
 
+		// 2nd Bar Chart
+		const chart2 = svg.append('g').attr('class', 'main-g second-g')
+		const barGroups2 = chart2.selectAll().data(data2).enter().append('g')
 		barGroups2
 			.append('rect')
 			.attr('class', 'bar2')
@@ -189,6 +190,7 @@ class Chart extends Component {
 			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 			.attr('transform', `translate(${xScale.bandwidth() / 4}, 100)`)
 
+		// Tool-tip
 		svg
 			.append('g')
 			.attr('class', 'tooltip-area')
@@ -233,27 +235,26 @@ class Chart extends Component {
 
 	updateChart() {
 		for (let val of data1) val['value'] = data[this.state.district1][val['id']]
-
 		for (let val of data2) val['value'] = data[this.state.district2][val['id']]
 
 		const chartDOM = document.querySelector('#svgContainer')
 		const height = chartDOM.clientHeight - 150
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
 
-		const bar = d3.selectAll('.bar').data(data1).transition().duration(200)
-		bar
+		const bar1 = d3.selectAll('.bar').data(data1).transition().duration(200)
+		bar1
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
-
-		const value = d3.selectAll('.value').data(data1).transition().duration(200)
-		value
-			.attr('y', (a) => yScale(a.value / 10000000) - 10)
-			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 
 		const bar2 = d3.selectAll('.bar2').data(data2).transition().duration(200)
 		bar2
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
+
+		const value1 = d3.selectAll('.value').data(data1).transition().duration(200)
+		value1
+			.attr('y', (a) => yScale(a.value / 10000000) - 10)
+			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 
 		const value2 = d3
 			.selectAll('.value2')
