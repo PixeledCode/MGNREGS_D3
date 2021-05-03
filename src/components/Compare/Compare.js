@@ -125,7 +125,7 @@ class Chart extends Component {
 			.select('#chart')
 			.classed('svg-container', true)
 			.attr('preserveAspectRatio', 'xMinYMin meet')
-			.attr('viewBox', `0 0 ${width} ${height - 100}`)
+			.attr('viewBox', `0 0 ${width+30} ${height - 100}`)
 
 		const xScale = d3
 			.scaleBand()
@@ -134,12 +134,24 @@ class Chart extends Component {
 			.padding(0.3)
 
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
+		const makeYLines = () => d3.axisLeft().scale(yScale)
+		
 
 		const chart1 = svg.append('g').attr('class', 'main-g')
+		chart1.append('g').call(d3.axisLeft(yScale))
+		.attr('transform', `rotate(0) translate(30, 100)`)
+
+		chart1
+			.append('g')
+			.attr('class', 'grid')
+			.call(makeYLines().tickSize(-width, 0, 0).tickFormat(''))
+			.attr('transform', `rotate(0) translate(30, 100)`)
+			
+
 		chart1
 			.append('g')
 			.attr('class', 'alt-g')
-			.attr('transform', `rotate(0) translate(0, ${height + 100})`)
+			.attr('transform', `rotate(0) translate(30, ${height + 100})`)
 			.call(d3.axisBottom(xScale))
 
 		// 1st Bar Chart
@@ -151,19 +163,10 @@ class Chart extends Component {
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 			.attr('width', xScale.bandwidth() / 2)
-			.attr('transform', `translate(0,100)`)
+			.attr('transform', `translate(30,100)`)
 			.on('mouseover', mouseOverHandler)
 			.on('mouseout', mouseOutHandler)
 			.on('mousemove', mousemove)
-
-		barGroups
-			.append('text')
-			.attr('class', 'value')
-			.attr('x', (a) => xScale(a.category) + xScale.bandwidth() / 2)
-			.attr('y', (a) => yScale(a.value / 10000000) - 10)
-			.attr('text-anchor', 'middle')
-			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
-			.attr('transform', `translate(-30,100)`)
 
 		// 2nd Bar Chart
 		const chart2 = svg.append('g').attr('class', 'main-g second-g')
@@ -175,19 +178,11 @@ class Chart extends Component {
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 			.attr('width', xScale.bandwidth() / 2)
-			.attr('transform', `translate(${xScale.bandwidth() / 2 - 1}, 100)`)
+			.attr('transform', `translate(${xScale.bandwidth() / 2 + 30}, 100)`)
 			.on('mouseover', mouseOverHandler)
 			.on('mouseout', mouseOutHandler)
 			.on('mousemove', mousemove)
 
-		barGroups2
-			.append('text')
-			.attr('class', 'value2')
-			.attr('x', (a) => xScale(a.category) + xScale.bandwidth() / 2)
-			.attr('y', (a) => yScale(a.value / 10000000) - 10)
-			.attr('text-anchor', 'middle')
-			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
-			.attr('transform', `translate(${xScale.bandwidth() / 4}, 100)`)
 
 		// Tool-tip
 		svg
@@ -201,34 +196,34 @@ class Chart extends Component {
 				'd',
 				'M2.5,11.513496398925781 L2.5,11.513496398925781 C2.5,6.535900115966797 6.4405975341796875,2.5 11.301300048828125,2.5 L15.303199768066406,2.5 L15.303199768066406,2.5 L34.508995056152344,2.5 L70.51799011230469,2.5 C72.85198974609375,2.5 75.08999633789062,3.449298858642578 76.74200439453125,5.140098571777344 C78.39299011230469,6.830799102783203 79.31999206542969,9.123699188232422 79.31999206542969,11.513496398925781 L79.31999206542969,58.0469970703125 L79.31999206542969,58.0469970703125 L79.31999206542969,71.56700134277344 L79.31999206542969,71.56700134277344 C79.31999206542969,76.54499816894531 75.37899780273438,80.58099365234375 70.51799011230469,80.58099365234375 L46.508995056152344,80.58099365234375 L38.41899871826172,92.5 L32.303199768066406,80.58099365234375 C35.969200134277344,80.58099365234375 12.635299682617188,80.58099365234375 11.301300048828125,80.58099365234375 C6.4405975341796875,80.58099365234375 2.5,76.54499816894531 2.5,71.56700134277344 L2.5,71.56700134277344 L2.5,58.0469970703125 L2.5,58.0469970703125 L2.5,11.513496398925781 z'
 			)
-			.attr('transform', 'rotate(0,0,100)translate(-35, -90)')
+			.attr('transform', 'rotate(0,0,100)translate(-5, -80)')
 
 		d3.select('.tooltip-area')
 			.append('text')
 			.attr('class', 'tooltip-text-category1')
 			.attr('transform', function (d, i) {
-				return 'translate(-25, -70)'
+				return 'translate(0, -60)'
 			})
 
 		d3.select('.tooltip-area')
 			.append('text')
 			.attr('class', 'tooltip-text-category2')
 			.attr('transform', function (d, i) {
-				return 'translate(-25, -55)'
+				return 'translate(0, -45)'
 			})
 
 		d3.select('.tooltip-area')
 			.append('text')
 			.attr('class', 'tooltip-text-value1')
 			.attr('transform', function (d, i) {
-				return 'translate(-29, -30)'
+				return 'translate(-1, -22)'
 			})
 
 		d3.select('.tooltip-area')
 			.append('text')
 			.attr('class', 'tooltip-text-value2')
 			.attr('transform', function (d, i) {
-				return 'translate(-5, -15)'
+				return 'translate(1, -10)'
 			})
 	}
 
@@ -250,19 +245,6 @@ class Chart extends Component {
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 
-		const value1 = d3.selectAll('.value').data(data1).transition().duration(200)
-		value1
-			.attr('y', (a) => yScale(a.value / 10000000) - 10)
-			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
-
-		const value2 = d3
-			.selectAll('.value2')
-			.data(data2)
-			.transition()
-			.duration(200)
-		value2
-			.attr('y', (a) => yScale(a.value / 10000000) - 10)
-			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
 	}
 
 	render() {
@@ -273,7 +255,7 @@ class Chart extends Component {
 					<h1>MGNREGS (2019-20) Compare Chart</h1>
 					<p>
 						Select any two constituencies to compare their expenditures
-						(&#x20B9;)
+						(Cr &#x20B9;)
 					</p>
 				</section>
 

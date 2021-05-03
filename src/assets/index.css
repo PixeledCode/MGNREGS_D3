@@ -61,6 +61,7 @@ body {
 
 .App .tooltip-area {
   pointer-events: none;
+  visibility: hidden;
 }
 
 .App .tooltip-area text {
@@ -185,9 +186,9 @@ body {
   pointer-events: none;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 700px) {
   #map__container {
-    margin-top: -10rem;
+    margin-top: -7rem;
   }
 }
 
@@ -204,6 +205,7 @@ body {
   left: 2vw;
   position: absolute;
   width: 400px;
+  min-width: 320px;
   height: 500px;
   display: -ms-grid;
   display: grid;
@@ -225,8 +227,7 @@ body {
 }
 
 #container h3 {
-  height: 23px;
-  margin-bottom: -30px;
+  height: 1rem;
   font-weight: 500;
 }
 
@@ -234,35 +235,54 @@ body {
   font-size: .8rem;
 }
 
-#container #chart .main-g {
+#container .details p {
+  color: #9FAAAE;
+  font-size: .7rem;
+  margin-bottom: -1.5rem;
+}
+
+#container #svgContainer {
+  height: 100%;
+  min-height: 400px;
+}
+
+#container #svgContainer #chart.svg-container {
+  height: 100%;
+}
+
+#container #svgContainer #chart.svg-container text {
+  font-size: .8rem;
+}
+
+#container #svgContainer #chart.svg-container .tooltip-area {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+#container #svgContainer #chart.svg-container .tooltip-area text {
+  font-size: .7rem;
+}
+
+#container #svgContainer #chart.svg-container .main-g {
   -webkit-transform: translate(4rem, 3rem);
           transform: translate(4rem, 3rem);
 }
 
-#container #chart .main-g .alt-g text {
+#container #svgContainer #chart.svg-container .main-g .alt-g text {
   -webkit-transform: rotate(-45deg) translate(-50px, 0px);
           transform: rotate(-45deg) translate(-50px, 0px);
   z-index: 20;
 }
 
-#container #chart .main-g text.value {
-  font-size: 12px;
-}
-
-#container #chart .main-g .bar {
+#container #svgContainer #chart.svg-container .main-g .bar {
   fill: #145084;
 }
 
-#container #chart .label {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-#container #chart .grid path {
+#container #svgContainer #chart.svg-container .grid path {
   stroke-width: 0;
 }
 
-#container #chart .grid .tick line {
+#container #svgContainer #chart.svg-container .grid .tick line {
   stroke: #9FAAAE;
   stroke-opacity: 0.3;
 }
@@ -322,12 +342,7 @@ body {
 @media screen and (max-width: 780px) {
   #container {
     position: relative;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  #container {
-    width: 350px;
+    width: 95vw;
   }
 }
 
@@ -453,14 +468,17 @@ body {
   font-size: .7rem;
 }
 
-#compareContainer #svgContainer text.value2, #compareContainer #svgContainer text.value {
-  font-size: 12px;
+#compareContainer #svgContainer .grid path {
+  stroke-width: 0;
 }
 
-@media screen and (max-width: 800px) {
-  #compareContainer #svgContainer text.value2, #compareContainer #svgContainer text.value {
-    visibility: hidden;
-  }
+#compareContainer #svgContainer .grid .tick line {
+  stroke: #9FAAAE;
+  stroke-opacity: 0.3;
+}
+
+#compareContainer #svgContainer text.value2, #compareContainer #svgContainer text.value {
+  font-size: .7rem;
 }
 
 .error {

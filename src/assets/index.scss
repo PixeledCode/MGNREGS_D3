@@ -61,6 +61,7 @@ body {
 
   .tooltip-area {
     pointer-events: none;
+    visibility: hidden;
 
     text {
       font-size: .7rem;
@@ -75,10 +76,10 @@ body {
     padding-bottom: 2px;
   }
 
-  select{
+  select {
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA0LjkgMTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQuOSAxMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6I2ZmZmZmZjt9DQo8L3N0eWxlPg0KPHRpdGxlPmFycm93czwvdGl0bGU+DQo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjEuNCw0LjcgMi41LDMuMiAzLjUsNC43ICIvPg0KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIzLjUsNS4zIDIuNSw2LjggMS40LDUuMyAiLz4NCjwvc3ZnPg==) no-repeat 95% 50%;
-    -moz-appearance: none; 
-    -webkit-appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
     appearance: none;
   }
 }
@@ -174,8 +175,8 @@ body {
     }
   }
 
-  @media screen and (max-width: 780px) {
-    margin-top: -10rem;
+  @media screen and (max-width: 700px) {
+    margin-top: -7rem;
   }
 }
 
@@ -192,6 +193,7 @@ body {
   left: 2vw;
   position: absolute;
   width: 400px;
+  min-width: 320px;
   height: 500px;
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr;
@@ -209,8 +211,7 @@ body {
   }
 
   h3 {
-    height: 23px;
-    margin-bottom: -30px;
+    height: 1rem;
     font-weight: 500;
   }
 
@@ -218,43 +219,61 @@ body {
     font-size: .8rem;
   }
 
-  // bar charts
-  #chart {
-    .main-g {
-      transform: translate(4rem, 3rem);
+  .details {
+    p {
+      color: #9FAAAE;
+    font-size: .7rem;
+      margin-bottom: -1.5rem;
+    }
+  }
 
-      .alt-g text {
-        transform: rotate(-45deg) translate(-50px, 0px);
-        z-index: 20;
+  // bar charts
+  #svgContainer {
+    // position: relative;
+    height: 100%;
+    min-height: 400px;
+
+    #chart.svg-container {
+      height: 100%;
+      text{
+        font-size: .8rem;
       }
 
-      text {
-        &.value {
-          font-size: 12px;
+      .tooltip-area {
+        pointer-events: none;
+        visibility: hidden;
+    
+        text {
+          font-size: .7rem;
+        }
+      }
+      .main-g {
+        transform: translate(4rem, 3rem);
+
+        .alt-g text {
+          transform: rotate(-45deg) translate(-50px, 0px);
+          z-index: 20;
+        }
+
+        .bar {
+          fill: #145084;
         }
       }
 
-      .bar {
-        fill: #145084;
+      .grid {
+        path {
+          stroke-width: 0;
+        }
+
+        .tick line {
+          stroke: #9FAAAE;
+          stroke-opacity: 0.3;
+        }
       }
     }
 
-    .label {
-      font-size: 12px;
-      font-weight: 400;
-    }
-
-    .grid {
-      path {
-        stroke-width: 0;
-      }
-
-      .tick line {
-        stroke: #9FAAAE;
-        stroke-opacity: 0.3;
-      }
-    }
   }
+
 
   &.filter-container {
     grid-template-rows: repeat(4, max-content);
@@ -308,11 +327,12 @@ body {
 
   @media screen and (max-width: 780px) {
     position: relative;
+    width: 95vw;
   }
 
-  @media screen and (max-width: 400px) {
-    width: 350px;
-  }
+  // @media screen and (max-width: 400px) {
+  //   width: 350px;
+  // }
 }
 
 
@@ -418,14 +438,25 @@ body {
       }
     }
 
+    .grid {
+      path {
+        stroke-width: 0;
+      }
+
+      .tick line {
+        stroke: #9FAAAE;
+        stroke-opacity: 0.3;
+      }
+    }
+
     text {
 
       &.value2,
       &.value {
-        font-size: 12px;
+        font-size: .7rem;
 
         @media screen and (max-width: 800px) {
-          visibility: hidden;
+          // visibility: hidden;
         }
       }
     }
