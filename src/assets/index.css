@@ -65,7 +65,7 @@ body {
 }
 
 .App .tooltip-area text {
-  font-size: .7rem;
+  font-size: 12px;
 }
 
 .App p#info {
@@ -260,7 +260,7 @@ body {
 }
 
 #container #svgContainer #chart.svg-container .tooltip-area text {
-  font-size: .7rem;
+  font-size: 12px;
 }
 
 #container #svgContainer #chart.svg-container .main-g {
