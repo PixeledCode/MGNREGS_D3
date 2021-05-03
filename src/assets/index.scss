@@ -298,9 +298,7 @@ body {
     #map-budget-key {
       padding-left: 2rem;
       width: 300px;
-      // margin: 10px 0;
-      margin-bottom: 5rem;
-      position: relative;
+      margin: 5px 0;
 
       .key-block {
         float: left;
@@ -321,7 +319,6 @@ body {
       }
 
       .range-value {
-        position: absolute;
         margin: 0;
         padding: 1rem 0;
         top: 1rem;

@@ -318,8 +318,7 @@ body {
 #container.filter-container #map-budget-key {
   padding-left: 2rem;
   width: 300px;
-  margin-bottom: 5rem;
-  position: relative;
+  margin: 5px 0;
 }
 
 #container.filter-container #map-budget-key .key-block {
@@ -341,7 +340,6 @@ body {
 }
 
 #container.filter-container #map-budget-key .range-value {
-  position: absolute;
   margin: 0;
   padding: 1rem 0;
   top: 1rem;
