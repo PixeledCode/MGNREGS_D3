@@ -81,7 +81,7 @@ class Chart extends Component {
 
 		const svg = d3.select('#chart').classed('svg-container', true)
 		.attr('preserveAspectRatio', 'xMinYMin meet')
-		.attr('viewBox', `0 0 ${width} ${height + 150}`)
+		.attr('viewBox', `0 0 ${width} ${height + 200}`)
 
 		const chart = svg.append('g').attr('class', 'main-g')
 
@@ -226,7 +226,8 @@ class Chart extends Component {
 						parliamentary constituencies of Odisha for the financial year
 						2019-20.
 					</p>
-					<p id="info">Click on map to display expenditures</p>
+					<p id="info">Click on map to populate chart</p>
+					<p id="info">Hover on map to display expenditures</p>
 				</section>
 				<section className="details">
 				<h3>{this.state.constituency}</h3>

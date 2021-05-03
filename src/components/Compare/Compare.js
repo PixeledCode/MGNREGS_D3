@@ -105,7 +105,7 @@ class Chart extends Component {
 			d3.select('.tooltip-area').style('visibility', 'hidden')
 		}
 
-		const mousemove = (d, i) => {
+		const tooltip = (d,i) => {
 			d3.select('.tooltip-text-category1').text(i.category.split(' ')[0])
 			d3.select('.tooltip-text-category2').text(i.category.split(' ')[1])
 			d3.select('.tooltip-text-value1').text(
@@ -113,8 +113,17 @@ class Chart extends Component {
 			)
 			d3.select('.tooltip-text-value2').text('INR')
 			const [x, y] = d3.pointer(d)
+			return [x,y]
+		}
 
-			d3.select('.tooltip-area').attr('transform', `translate(${x}, ${y})`)
+		const mousemove = (d, i) => {
+			const pointer = tooltip(d, i)
+			d3.select('.tooltip-area').attr('transform', `translate(${pointer[0]}, ${pointer[1]})`)
+		}
+
+		const mousemove2 = (d, i) => {
+			const pointer = tooltip(d, i)
+			d3.select('.tooltip-area').attr('transform', `translate(${pointer[0]+55}, ${pointer[1]})`)
 		}
 
 		const chartDOM = document.querySelector('#svgContainer')
@@ -125,7 +134,7 @@ class Chart extends Component {
 			.select('#chart')
 			.classed('svg-container', true)
 			.attr('preserveAspectRatio', 'xMinYMin meet')
-			.attr('viewBox', `0 0 ${width+30} ${height - 100}`)
+			.attr('viewBox', `0 0 ${width+30} ${height + 110}`)
 
 		const xScale = d3
 			.scaleBand()
@@ -181,7 +190,7 @@ class Chart extends Component {
 			.attr('transform', `translate(${xScale.bandwidth() / 2 + 30}, 100)`)
 			.on('mouseover', mouseOverHandler)
 			.on('mouseout', mouseOutHandler)
-			.on('mousemove', mousemove)
+			.on('mousemove', mousemove2)
 
 
 		// Tool-tip

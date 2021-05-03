@@ -148,8 +148,8 @@ class Filter extends Component {
 
 		const projection = d3.geoMercator().fitExtent(
 			[
-				[fitSVG, 0],
-				[WIDTH, HEIGHT],
+				[fitSVG, 50],
+				[WIDTH, HEIGHT - 100],
 			],
 			odisha
 		)

@@ -9,19 +9,16 @@ body {
 
 :root {
   font-size: 12px;
-}
 
-@media (min-width: 400px) and (max-width: 800px) {
-  :root {
-    font-size: calc(12px + (24 - 12) * ((100vw - 400px) / (800 - 400)));
+  @media (min-width: 400px) and (max-width: 800px) {
+      font-size: calc(12px + (20 - 12) * ((100vw - 400px) / (800 - 400)));
+  }
+
+  @media (min-width: 800px) {
+      font-size: 17px;
   }
 }
 
-@media (min-width: 800px) {
-  :root {
-    font-size: 17px;
-  }
-}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -101,6 +98,11 @@ body {
     padding: .5rem 3rem;
   }
 
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
   .nav-links {
 
     list-style: none;
@@ -112,19 +114,15 @@ body {
       height: 100%;
       display: grid;
       align-items: center;
-      // width: 85px;
       text-align: center;
-      // padding-top: 20px;
+      font-size: .8rem;
 
       &.active {
         background-color: hsl(350, 100%, 63%);
         font-weight: 500;
       }
 
-      a {
-        color: white;
-        text-decoration: none;
-      }
+
     }
 
   }
@@ -175,8 +173,12 @@ body {
     }
   }
 
-  @media screen and (max-width: 700px) {
-    margin-top: -7rem;
+  @media screen and (max-width: 800px) {
+    margin-top: 6rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-top: -4rem;
   }
 }
 
@@ -189,8 +191,8 @@ body {
 }
 
 #container {
-  top: 10vw;
-  left: 2vw;
+  top: 5rem;
+  left: 1rem;
   position: absolute;
   width: 400px;
   min-width: 320px;
@@ -222,31 +224,32 @@ body {
   .details {
     p {
       color: #9FAAAE;
-    font-size: .7rem;
+      font-size: .7rem;
       margin-bottom: -1.5rem;
     }
   }
 
   // bar charts
   #svgContainer {
-    // position: relative;
     height: 100%;
     min-height: 400px;
 
     #chart.svg-container {
       height: 100%;
-      text{
+
+      text {
         font-size: .8rem;
       }
 
       .tooltip-area {
         pointer-events: none;
         visibility: hidden;
-    
+
         text {
           font-size: 12px;
         }
       }
+
       .main-g {
         transform: translate(4rem, 3rem);
 
@@ -282,6 +285,7 @@ body {
 
     .range-value {
       padding: 1rem 0;
+      width: max-content;
 
       span {
         font-weight: 500;
@@ -325,14 +329,12 @@ body {
     }
   }
 
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 900px) {
     position: relative;
     width: 95vw;
-  }
+    top: 2rem;
 
-  // @media screen and (max-width: 400px) {
-  //   width: 350px;
-  // }
+  }
 }
 
 
