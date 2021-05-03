@@ -5,37 +5,37 @@ import data from 'assets/data.json'
 const data1 = [
 	{
 		id: 'opening_bal',
-		language: 'Opening Balance',
+		category: 'Opening Balance',
 		value: 0,
 	},
 	{
 		id: 'total_funds',
-		language: 'Funds Available',
+		category: 'Funds Available',
 		value: 0,
 	},
 	{
 		id: 'expenditure_wages',
-		language: 'Expenditure Wages',
+		category: 'Expenditure Wages',
 		value: 0,
 	},
 	{
 		id: 'expenditure_materials',
-		language: 'Expenditure Material',
+		category: 'Expenditure Material',
 		value: 0,
 	},
 	{
 		id: 'total_expenditure',
-		language: 'Grand Expenditure',
+		category: 'Grand Expenditure',
 		value: 0,
 	},
 	{
 		id: 'unspent_bal',
-		language: 'Unspent Balance',
+		category: 'Unspent Balance',
 		value: 0,
 	},
 	{
 		id: 'payment_due',
-		language: 'Payment Due',
+		category: 'Payment Due',
 		value: 0,
 	},
 ]
@@ -43,37 +43,37 @@ const data1 = [
 const data2 = [
 	{
 		id: 'opening_bal',
-		language: 'Opening Balance',
+		category: 'Opening Balance',
 		value: 0,
 	},
 	{
 		id: 'total_funds',
-		language: 'Funds Available',
+		category: 'Funds Available',
 		value: 0,
 	},
 	{
 		id: 'expenditure_wages',
-		language: 'Expenditure Wages',
+		category: 'Expenditure Wages',
 		value: 0,
 	},
 	{
 		id: 'expenditure_materials',
-		language: 'Expenditure Material',
+		category: 'Expenditure Material',
 		value: 0,
 	},
 	{
 		id: 'total_expenditure',
-		language: 'Grand Expenditure',
+		category: 'Grand Expenditure',
 		value: 0,
 	},
 	{
 		id: 'unspent_bal',
-		language: 'Unspent Balance',
+		category: 'Unspent Balance',
 		value: 0,
 	},
 	{
 		id: 'payment_due',
-		language: 'Payment Due',
+		category: 'Payment Due',
 		value: 0,
 	},
 ]
@@ -106,8 +106,8 @@ class Chart extends Component {
 		}
 
 		const mousemove = (d, i) => {
-			d3.select('.tooltip-text-category1').text(i.language.split(' ')[0])
-			d3.select('.tooltip-text-category2').text(i.language.split(' ')[1])
+			d3.select('.tooltip-text-category1').text(i.category.split(' ')[0])
+			d3.select('.tooltip-text-category2').text(i.category.split(' ')[1])
 			d3.select('.tooltip-text-value1').text(
 				i.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 			)
@@ -126,12 +126,11 @@ class Chart extends Component {
 			.classed('svg-container', true)
 			.attr('preserveAspectRatio', 'xMinYMin meet')
 			.attr('viewBox', `0 0 ${width} ${height - 100}`)
-			.classed('svg-content-responsive', true)
 
 		const xScale = d3
 			.scaleBand()
 			.range([0, width])
-			.domain(data1.map((s) => s.language))
+			.domain(data1.map((s) => s.category))
 			.padding(0.3)
 
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
@@ -148,7 +147,7 @@ class Chart extends Component {
 		barGroups
 			.append('rect')
 			.attr('class', 'bar')
-			.attr('x', (g) => xScale(g.language))
+			.attr('x', (g) => xScale(g.category))
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 			.attr('width', xScale.bandwidth() / 2)
@@ -160,7 +159,7 @@ class Chart extends Component {
 		barGroups
 			.append('text')
 			.attr('class', 'value')
-			.attr('x', (a) => xScale(a.language) + xScale.bandwidth() / 2)
+			.attr('x', (a) => xScale(a.category) + xScale.bandwidth() / 2)
 			.attr('y', (a) => yScale(a.value / 10000000) - 10)
 			.attr('text-anchor', 'middle')
 			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
@@ -172,7 +171,7 @@ class Chart extends Component {
 		barGroups2
 			.append('rect')
 			.attr('class', 'bar2')
-			.attr('x', (g) => xScale(g.language))
+			.attr('x', (g) => xScale(g.category))
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 			.attr('width', xScale.bandwidth() / 2)
@@ -184,7 +183,7 @@ class Chart extends Component {
 		barGroups2
 			.append('text')
 			.attr('class', 'value2')
-			.attr('x', (a) => xScale(a.language) + xScale.bandwidth() / 2)
+			.attr('x', (a) => xScale(a.category) + xScale.bandwidth() / 2)
 			.attr('y', (a) => yScale(a.value / 10000000) - 10)
 			.attr('text-anchor', 'middle')
 			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)

@@ -1,9 +1,52 @@
-body {
+html, body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  scrollbar-width: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  font-size: 12px;
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+  :root {
+    font-size: calc(12px + (24 - 12) * ((100vw - 400px) / (800 - 400)));
+  }
+}
+
+@media (min-width: 800px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: #222222;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgb(100, 98, 98);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Scrollbar fpr firefox */
+.scroller {
+	overflow-y: scroll;
+	scrollbar-color: #222222;
+	scrollbar-width: thin;
+}
+
 
 #root,
 .App,
@@ -36,7 +79,7 @@ body {
   background-color: #145084;
   height: 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
   h1 {
@@ -44,17 +87,34 @@ body {
     color: white;
     padding: .5rem 3rem;
   }
+  .nav-links {
 
-  a {
-    color: white;
-    text-decoration: none;
-    margin-right: 1rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 5.5rem);
+    height: 50px;
 
-    &.active {
-      color: hsl(350, 100%, 63%);
-      font-weight: 500;
+    li {
+      height: 100%;
+      display: grid;
+      align-items: center;
+      // width: 85px;
+      text-align: center;
+      // padding-top: 20px;
+
+      &.active {
+        background-color: hsl(350, 100%, 63%);
+        font-weight: 500;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
     }
+    
   }
+  
 
   @media screen and (max-width: 500px) {
     h1 {
@@ -102,7 +162,7 @@ body {
   }
 
   @media screen and (max-width: 780px) {
-    margin-top: -5rem;
+    margin-top: -10rem;
   }
 }
 
@@ -112,13 +172,6 @@ body {
   width: 100%;
   vertical-align: top;
   overflow: hidden;
-
-  &.svg-content-responsive {
-    display: inline-block;
-    position: absolute;
-    top: 50px;
-    left: 0;
-  }
 }
 
 #container {
@@ -193,7 +246,7 @@ body {
   &.filter-container {
     grid-template-rows: repeat(4, max-content);
     border: 1px solid #cccccc;
-    height: 310px;
+    height: 19rem;
 
     .range-value {
       padding: 1rem 0;
@@ -218,7 +271,7 @@ body {
     #map-budget-key {
       padding: 0 2rem;
       width: 300px;
-      margin: 20px 0;
+      margin: 10px 0;
 
       .key-block {
         float: left;

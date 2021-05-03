@@ -1,8 +1,50 @@
-body {
+html, body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  scrollbar-width: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 12px;
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+  :root {
+    font-size: calc(12px + (24 - 12) * ((100vw - 400px) / (800 - 400)));
+  }
+}
+
+@media (min-width: 800px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #646262;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Scrollbar fpr firefox */
+.scroller {
+  overflow-y: scroll;
+  scrollbar-color: #222222;
+  scrollbar-width: thin;
 }
 
 #root,
@@ -38,8 +80,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -51,15 +94,33 @@ body {
   padding: .5rem 3rem;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin-right: 1rem;
+.navbar .nav-links {
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (5.5rem)[3];
+      grid-template-columns: repeat(3, 5.5rem);
+  height: 50px;
 }
 
-.navbar a.active {
-  color: #ff4262;
+.navbar .nav-links li {
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.navbar .nav-links li.active {
+  background-color: #ff4262;
   font-weight: 500;
+}
+
+.navbar .nav-links li a {
+  color: white;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 500px) {
@@ -111,7 +172,7 @@ body {
 
 @media screen and (max-width: 780px) {
   #map__container {
-    margin-top: -5rem;
+    margin-top: -10rem;
   }
 }
 
@@ -121,13 +182,6 @@ body {
   width: 100%;
   vertical-align: top;
   overflow: hidden;
-}
-
-.svg-container.svg-content-responsive {
-  display: inline-block;
-  position: absolute;
-  top: 50px;
-  left: 0;
 }
 
 #container {
@@ -203,7 +257,7 @@ body {
       grid-template-rows: repeat(4, -webkit-max-content);
       grid-template-rows: repeat(4, max-content);
   border: 1px solid #cccccc;
-  height: 310px;
+  height: 19rem;
 }
 
 #container.filter-container .range-value {
@@ -229,7 +283,7 @@ body {
 #container.filter-container #map-budget-key {
   padding: 0 2rem;
   width: 300px;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 #container.filter-container #map-budget-key .key-block {

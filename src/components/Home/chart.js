@@ -24,31 +24,31 @@ class Chart extends Component {
 	drawChart() {
 		const data = [
 			{
-				language: 'Opening Balance',
+				category: 'Opening Balance',
 				value: this.props.opening_bal,
 			},
 			{
-				language: 'Funds Available',
+				category: 'Funds Available',
 				value: this.props.total_funds,
 			},
 			{
-				language: 'Expenditure-Wages',
+				category: 'Expenditure-Wages',
 				value: this.props.expenditure_wages,
 			},
 			{
-				language: 'Expenditure-Material',
+				category: 'Expenditure-Material',
 				value: this.props.expenditure_materials,
 			},
 			{
-				language: 'Grand Expenditure',
+				category: 'Grand Expenditure',
 				value: this.props.total_expenditure,
 			},
 			{
-				language: 'Unspent Balance',
+				category: 'Unspent Balance',
 				value: this.props.unspent_bal,
 			},
 			{
-				language: 'Payment Due',
+				category: 'Payment Due',
 				value: this.props.payment_due,
 			},
 		]
@@ -64,7 +64,7 @@ class Chart extends Component {
 		const xScale = d3
 			.scaleBand()
 			.range([0, width])
-			.domain(data.map((s) => s.language))
+			.domain(data.map((s) => s.category))
 			.padding(0.3)
 
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
@@ -89,7 +89,7 @@ class Chart extends Component {
 		barGroups
 			.append('rect')
 			.attr('class', 'bar')
-			.attr('x', (g) => xScale(g.language))
+			.attr('x', (g) => xScale(g.category))
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
 			.attr('width', xScale.bandwidth())
@@ -97,7 +97,7 @@ class Chart extends Component {
 		barGroups
 			.append('text')
 			.attr('class', 'value')
-			.attr('x', (a) => xScale(a.language) + xScale.bandwidth() / 2)
+			.attr('x', (a) => xScale(a.category) + xScale.bandwidth() / 2)
 			.attr('y', (a) => yScale(a.value / 10000000) - 10)
 			.attr('text-anchor', 'middle')
 			.text((a) => `${(a.value / 10000000).toFixed(2)} Cr`)
