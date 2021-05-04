@@ -110,11 +110,6 @@ body {
   padding: .5rem 3rem;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-}
-
 .navbar .nav-links {
   padding: 0;
   list-style: none;
@@ -125,7 +120,7 @@ body {
   height: 50px;
 }
 
-.navbar .nav-links li {
+.navbar .nav-links a {
   height: 100%;
   display: -ms-grid;
   display: grid;
@@ -134,9 +129,11 @@ body {
           align-items: center;
   text-align: center;
   font-size: .8rem;
+  color: white;
+  text-decoration: none;
 }
 
-.navbar .nav-links li.active {
+.navbar .nav-links a.active {
   background-color: #ff4262;
   font-weight: 500;
 }
@@ -211,10 +208,10 @@ body {
 #container {
   top: 5rem;
   left: 1rem;
+  padding: 1rem;
   position: absolute;
-  width: 400px;
-  min-width: 320px;
-  height: 500px;
+  width: 420px;
+  height: auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (max-content)[2] 1fr;
@@ -223,15 +220,9 @@ body {
   z-index: 100;
 }
 
-#container h1,
-#container h3,
-#container p {
-  padding: 0 2rem;
-}
-
 #container h1 {
   font-size: 1.5rem;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 #container h3 {
@@ -245,13 +236,12 @@ body {
 
 #container .details p {
   color: #9FAAAE;
-  font-size: 1rem;
+  font-size: .8rem;
   margin-bottom: -1.5rem;
 }
 
 #container #svgContainer {
-  height: 100%;
-  min-height: 400px;
+  height: 25rem;
 }
 
 #container #svgContainer #chart.svg-container {
@@ -295,12 +285,18 @@ body {
   stroke-opacity: 0.3;
 }
 
+@media screen and (max-width: 360px) {
+  #container #svgContainer {
+    height: 30rem;
+  }
+}
+
 #container.filter-container {
   -ms-grid-rows: (max-content)[4];
       grid-template-rows: repeat(4, -webkit-max-content);
       grid-template-rows: repeat(4, max-content);
   border: 1px solid #cccccc;
-  height: 19rem;
+  height: auto;
 }
 
 #container.filter-container #district {
@@ -311,12 +307,10 @@ body {
   outline: none;
   color: white;
   padding: 0 .5rem;
-  margin-left: 2rem;
   border-radius: 4px;
 }
 
 #container.filter-container #map-budget-key {
-  padding-left: 2rem;
   width: 300px;
   margin: 5px 0;
 }
@@ -346,6 +340,7 @@ body {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  font-size: .8rem;
 }
 
 #container.filter-container #map-budget-key .range-value span {
@@ -355,7 +350,7 @@ body {
 @media screen and (max-width: 900px) {
   #container {
     position: relative;
-    width: 95vw;
+    width: 90vw;
     top: 2rem;
   }
 }

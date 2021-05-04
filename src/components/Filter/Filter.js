@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import odisha from 'assets/odihsa'
 import data from 'assets/data.json'
+import { motion } from 'framer-motion'
 
 const getColorByValue = (val, hue, range) => {
 	const getLightness = (val) => {
@@ -243,7 +244,12 @@ class Filter extends Component {
 	render() {
 		return (
 			<>
-				<div id="container" className="filter-container">
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					id="container"
+					className="filter-container"
+				>
 					<h1>MGNREGS (2019-20)</h1>
 					<p>
 						Data Visualization to analyse expenditures for Mahatma Gandhi
@@ -286,8 +292,13 @@ class Filter extends Component {
 						<option value="unspent_bal">Unspent Balance</option>
 						<option value="payment_due">Payment Due</option>
 					</select>
-				</div>
-				<div id={'map__container'} className="filterMap"></div>
+				</motion.div>
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					id={'map__container'}
+					className="filterMap"
+				></motion.div>
 			</>
 		)
 	}

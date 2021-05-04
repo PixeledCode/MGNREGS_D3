@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import odisha from 'assets/odihsa'
 import data from 'assets/data.json'
 import Chart from './chart'
+import { motion } from 'framer-motion'
 
 class Home extends Component {
 	constructor(props) {
@@ -41,9 +42,9 @@ class Home extends Component {
 		}
 
 		const clickHandler = (d, i) => {
-			if(document.querySelector('.selectedMap'))
+			if (document.querySelector('.selectedMap'))
 				document.querySelector('.selectedMap').classList.remove('selectedMap')
-			
+
 			document.getElementById(i.properties.pc_name).classList.add('selectedMap')
 			this.setState({
 				initial: false,
@@ -90,7 +91,7 @@ class Home extends Component {
 				.enter()
 				.append('path')
 				.attr('class', 'svgDistrict')
-				.attr('id', ((d) => d.properties.pc_name))
+				.attr('id', (d) => d.properties.pc_name)
 				.attr('d', path)
 				.attr('fill', color)
 				.attr('stroke', '#FFF')
@@ -119,7 +120,10 @@ class Home extends Component {
 	render() {
 		return (
 			<>
-				<Chart
+			<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}>
+			<Chart
 					constituency={this.state.constituency}
 					opening_bal={this.state.opening_bal}
 					total_funds={this.state.total_funds}
@@ -129,7 +133,13 @@ class Home extends Component {
 					unspent_bal={this.state.unspent_bal}
 					payment_due={this.state.payment_due}
 				/>
-				<div id={'map__container'}></div>
+			</motion.div>
+				
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					id={'map__container'}
+				></motion.div>
 			</>
 		)
 	}

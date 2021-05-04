@@ -11,11 +11,11 @@ body {
   font-size: 12px;
 
   @media (min-width: 400px) and (max-width: 800px) {
-      font-size: calc(12px + (20 - 12) * ((100vw - 400px) / (800 - 400)));
+    font-size: calc(12px + (20 - 12) * ((100vw - 400px) / (800 - 400)));
   }
 
   @media (min-width: 800px) {
-      font-size: 17px;
+    font-size: 17px;
   }
 }
 
@@ -98,11 +98,6 @@ body {
     padding: .5rem 3rem;
   }
 
-  a {
-    color: white;
-    text-decoration: none;
-  }
-
   .nav-links {
     padding: 0;
     list-style: none;
@@ -110,21 +105,20 @@ body {
     grid-template-columns: repeat(3, 5.5rem);
     height: 50px;
 
-    li {
+    a {
       height: 100%;
       display: grid;
       align-items: center;
       text-align: center;
       font-size: .8rem;
+      color: white;
+      text-decoration: none;
 
       &.active {
         background-color: hsl(350, 100%, 63%);
         font-weight: 500;
       }
-
-
     }
-
   }
 
 
@@ -193,23 +187,17 @@ body {
 #container {
   top: 5rem;
   left: 1rem;
+  padding: 1rem;
   position: absolute;
-  width: 400px;
-  min-width: 320px;
-  height: 500px;
+  width: 420px;
+  height: auto;
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr;
   z-index: 100;
 
-  h1,
-  h3,
-  p {
-    padding: 0 2rem;
-  }
-
   h1 {
     font-size: 1.5rem;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   h3 {
@@ -224,15 +212,14 @@ body {
   .details {
     p {
       color: #9FAAAE;
-      font-size: 1rem;
+      font-size: .8rem;
       margin-bottom: -1.5rem;
     }
   }
 
   // bar charts
   #svgContainer {
-    height: 100%;
-    min-height: 400px;
+    height: 25rem;
 
     #chart.svg-container {
       height: 100%;
@@ -275,13 +262,17 @@ body {
       }
     }
 
+    @media screen and (max-width: 360px) {
+      height: 30rem;
+    }
+
   }
 
 
   &.filter-container {
     grid-template-rows: repeat(4, max-content);
     border: 1px solid #cccccc;
-    height: 19rem;
+    height: auto;
 
     #district {
       width: 200px;
@@ -291,12 +282,10 @@ body {
       outline: none;
       color: white;
       padding: 0 .5rem;
-      margin-left: 2rem;
       border-radius: 4px;
     }
 
     #map-budget-key {
-      padding-left: 2rem;
       width: 300px;
       margin: 5px 0;
 
@@ -323,7 +312,8 @@ body {
         padding: 1rem 0;
         top: 1rem;
         width: max-content;
-  
+        font-size: .8rem;
+
         span {
           font-weight: 500;
         }
@@ -333,9 +323,10 @@ body {
 
   @media screen and (max-width: 900px) {
     position: relative;
-    width: 95vw;
+    width: 90vw;
     top: 2rem;
   }
+
   @media screen and (max-width: 360px) {
     left: 0;
   }

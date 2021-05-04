@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3'
 import data from 'assets/data.json'
+import { motion } from 'framer-motion'
 
 const data1 = [
 	{
@@ -97,6 +98,10 @@ class Chart extends Component {
 		for (let val of data1) val['value'] = data[this.state.district1][val['id']]
 		for (let val of data2) val['value'] = data[this.state.district2][val['id']]
 
+		const chartDOM = document.querySelector('#svgContainer')
+		const width = chartDOM.clientWidth
+		const height = chartDOM.clientHeight - 150
+
 		function mouseOverHandler(d, i) {
 			d3.select('.tooltip-area').style('visibility', 'visible')
 		}
@@ -123,12 +128,8 @@ class Chart extends Component {
 
 		const mousemove2 = (d, i) => {
 			const pointer = tooltip(d, i)
-			d3.select('.tooltip-area').attr('transform', `translate(${pointer[0]+55}, ${pointer[1]})`)
+			d3.select('.tooltip-area').attr('transform', `translate(${pointer[0]+width/20}, ${pointer[1]})`)
 		}
-
-		const chartDOM = document.querySelector('#svgContainer')
-		const width = chartDOM.clientWidth
-		const height = chartDOM.clientHeight - 150
 
 		const svg = d3
 			.select('#chart')
@@ -259,7 +260,10 @@ class Chart extends Component {
 	render() {
 		const districts = Object.keys(data)
 		return (
-			<div id="compareContainer">
+			<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }} 
+			id="compareContainer">
 				<section className="heading">
 					<h1>MGNREGS (2019-20) Compare Chart</h1>
 					<p>
@@ -299,7 +303,7 @@ class Chart extends Component {
 				<section id="svgContainer">
 					<svg id={'chart'} />
 				</section>
-			</div>
+			</motion.div>
 		)
 	}
 }

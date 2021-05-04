@@ -74,14 +74,14 @@ class Chart extends Component {
 			d3.select('.tooltip-area').attr('transform', `translate(${x}, ${y})`)
 		}
 		
-		const chartDOM = document.querySelector('#container')
+		const chartDOM = document.querySelector('#svgContainer')
 		const margin = 80
 		const width = chartDOM.clientWidth 
-		const height = chartDOM.clientHeight - 100
+		const height = chartDOM.clientHeight
 
 		const svg = d3.select('#chart').classed('svg-container', true)
 		.attr('preserveAspectRatio', 'xMinYMin meet')
-		.attr('viewBox', `0 0 ${width} ${height + 200}`)
+		.attr('viewBox', `0 0 ${width} ${height + 150}`)
 
 		const chart = svg.append('g').attr('class', 'main-g')
 
@@ -120,6 +120,7 @@ class Chart extends Component {
 			.on('mouseover', mouseOverHandler)
 			.on('mouseout', mouseOutHandler)
 			.on('mousemove', mousemove)
+			
 
 		svg
 			.append('text')
@@ -204,14 +205,16 @@ class Chart extends Component {
 				value: this.props.payment_due,
 			},
 		]
-		const chartDOM = document.querySelector('#container')
-		const height = chartDOM.clientHeight -100
+		const chartDOM = document.querySelector('#svgContainer')
+		const height = chartDOM.clientHeight
 		const yScale = d3.scaleLinear().range([height, 0]).domain([0, 200])
 
 		const bar = d3.selectAll('.bar').data(newData).transition().duration(200)
 		bar
 			.attr('y', (g) => yScale(g.value / 10000000))
 			.attr('height', (g) => height - yScale(g.value / 10000000))
+
+
 
 	}
 
